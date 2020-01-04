@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Development Tests</title>
+    <script src="../Dist/jActs.js"></script>
+</head>
+<style>
+    .el_30x30 {
+        background-color: red;
+        border: 3px solid yellowgreen;
+        width: 30px;
+        height: 30px;
+        position: relative;
+    }
+</style>
+<body style="display: grid; place-items: center; place-content: center;">
+    um body
+
+
+    <div id="teste0" class="el_30x30"></div><br />
+    <div id="teste1" class="el_30x30 um"></div><br />
+    <div id="teste2" class="el_30x30 dois"></div><br />
+    <div id="teste3" class="el_30x30 tres"></div><br />
+
+    <div id="teste4" class="el_30x30"></div><br />
+    <div id="teste5" class="el_30x30"></div><br />
+    <div id="teste6" class="el_30x30"></div><br />
+    <div id="teste7" class="el_30x30"></div><br />
+
+    <div id="teste8" class="el_30x30"></div><br />
+    <div id="teste9" class="el_30x30"></div><br />
+    <div id="teste10" class="el_30x30"></div><br />
+    <div id="teste11" class="el_30x30"></div><br />
+
+    <div id="teste12" class="el_30x30"></div><br />
+    <div id="teste13" class="el_30x30"></div><br />
+    <div id="teste14" class="el_30x30"></div><br />
+    <div id="teste15" class="el_30x30"></div><br />
+
+</body>
+</html>
+
+<script>
+    var limit = 50, index = 0;
+    _jaUpdate(function () {
+        if (index < limit) {
+            _jaMoveLeftFoward(".el_30x30 um", 4);
+            _jaMoveLeftFoward(".el_30x30 dois", 2);
+            _jaMoveLeftFoward(".el_30x30 tres", 1);
+            _jaMoveLeftFoward("#teste0", 8);
+
+            _jaMoveTopUpward("#teste4", 5); _jaMoveLeftBackward("#teste4", 8);
+            _jaMoveTopUpward("#teste5", 4); _jaMoveLeftBackward("#teste5", 4);
+            _jaMoveTopUpward("#teste6", 3); _jaMoveLeftBackward("#teste6", 2);
+            _jaMoveTopUpward("#teste7", 2); _jaMoveLeftBackward("#teste7", 1);
+
+
+            _jaMoveTopDownward("#teste8", 2); _jaMoveLeftFoward("#teste8", 8);
+            _jaMoveTopDownward("#teste9", 3); _jaMoveLeftFoward("#teste9", 7);
+            _jaMoveTopDownward("#teste10", 4); _jaMoveLeftFoward("#teste10", 5);
+            _jaMoveTopDownward("#teste11", 5); _jaMoveLeftFoward("#teste11", 3);
+
+
+            _jaMoveLeftBackward("#teste12", 1);
+            _jaMoveLeftBackward("#teste13", 2);
+            _jaMoveLeftBackward("#teste14", 4);
+            _jaMoveLeftBackward("#teste15", 8);
+
+
+            index++;
+        } else {
+            _jaMoveLeftBackward(".el_30x30 um", 4);
+            _jaMoveLeftBackward(".el_30x30 dois", 2);
+            _jaMoveLeftBackward(".el_30x30 tres", 1);
+            _jaMoveLeftBackward("#teste0", 8);
+
+            _jaMoveTopDownward("#teste4", 5); _jaMoveLeftFoward("#teste4", 8);
+            _jaMoveTopDownward("#teste5", 4); _jaMoveLeftFoward("#teste5", 4);
+            _jaMoveTopDownward("#teste6", 3); _jaMoveLeftFoward("#teste6", 2);
+            _jaMoveTopDownward("#teste7", 2); _jaMoveLeftFoward("#teste7", 1);
+
+
+            _jaMoveTopUpward("#teste8", 2); _jaMoveLeftBackward("#teste8", 8);
+            _jaMoveTopUpward("#teste9", 3); _jaMoveLeftBackward("#teste9", 7);
+            _jaMoveTopUpward("#teste10", 4); _jaMoveLeftBackward("#teste10", 5);
+            _jaMoveTopUpward("#teste11", 5); _jaMoveLeftBackward("#teste11", 3);
+
+
+            _jaMoveLeftFoward("#teste12", 1);
+            _jaMoveLeftFoward("#teste13", 2);
+            _jaMoveLeftFoward("#teste14", 4);
+            _jaMoveLeftFoward("#teste15", 8);
+
+            index++;
+        }
+        
+    })
+    _jaUpdate(function () { if (index >= 100) { index = 0; } });
+</script>
