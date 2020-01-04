@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Development Tests</title>
+    <script src="../Dist/jActs.js"></script>
+</head>
+<body>
+    um body
+</body>
+
+
+
+</html>
+
+<script>
+        var updateFuncs = [];
+
+
+
+        function registerUpdateFunc(func) {
+            console.log('register func...');
+            updateFuncs.push(func);
+        }
+
+        var triggerUpdateFuncs = function() {
+            console.log('triggering update funcs...');
+            updateFuncs.forEach(element => element());
+        }
+
+        setInterval(function() {
+            requestAnimationFrame(function() {
+                triggerUpdateFuncs();
+            });
+        }, 1000);
+
+        var f1 = function() {
+            console.log('1');
+        };
+        var f2 = function() {
+            console.log('2');
+        };
+        var f3 = function() {
+            console.log('3');
+        };
+
+        setTimeout(function() {
+            registerUpdateFunc(f1);
+        }, 5000);
+
+
+        setTimeout(function() {
+            registerUpdateFunc(f2);
+        }, 5000);
+
+
+        setTimeout(function() {
+            registerUpdateFunc(f3);
+        }, 10000);
+    </script>
