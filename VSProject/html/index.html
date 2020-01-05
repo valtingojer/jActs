@@ -13,9 +13,79 @@
         height: 30px;
         position: relative;
     }
+
+    .fps-display {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 5px;
+    }
+
+    .inner-display {
+        background-color: darkred;
+        width: 100%;
+        text-align: center;
+        color: yellowgreen;
+        padding: 5px;
+        border: 1px solid darkslategrey;
+    }
+
+    .fps-display h1 {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .fps-display span {
+        font-style: normal;
+    }
+
+    #jacts-holder-debug-class {
+        width: 60px;
+        height: 60px;
+        background-color: yellow;
+        z-index: 999999 !important;
+    }
 </style>
+
 <body style="display: grid; place-items: center; place-content: center;">
-    um body
+    <div class="fps-display">
+        <div class="inner-display" style="top: 0px"><h1>Seconds: <span id="label_secondcount"></span></h1></div>
+        <div class="inner-display" style="top: 45px"><h1>FPS: <span id="label_fps"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>scrollbar: <span id="scrollbar"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>X: <span id="wx"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Y: <span id="wy"></span></h1></div>
+
+        <!--
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Top: <span id="label_ftlt"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft bottom: <span id="label_ftlb"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Left: <span id="label_ftll"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Right: <span id="label_ftlr"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Top: <span id="label_ftrt"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopRight bottom: <span id="label_ftrb"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Left: <span id="label_ftrl"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Right: <span id="label_ftrr"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Top: <span id="label_bllt"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft bottom: <span id="label_bllb"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Left: <span id="label_blll"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Right: <span id="label_bllr"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Top: <span id="label_brlt"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight bottom: <span id="label_brlb"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Left: <span id="label_brll"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Right: <span id="label_brlr"></span></h1></div>
+        -->
+    </div>
 
 
     <div id="teste0" class="el_30x30"></div><br />
@@ -38,11 +108,56 @@
     <div id="teste14" class="el_30x30"></div><br />
     <div id="teste15" class="el_30x30"></div><br />
 
+    <div id="teste16" class="el_30x30"></div><br />
+    <div id="teste17" class="el_30x30"></div><br />
+    <div id="teste18" class="el_30x30"></div><br />
 </body>
 </html>
+<style>
+</style>
+<script>
+
+</script>
 
 <script>
     var limit = 50, index = 0;
+
+    _jaUpdate(function () {
+        document.getElementById("label_secondcount").innerText = _jaTime.SecondCount;
+        document.getElementById("label_fps").innerText = _jaFrame.fps;
+        document.getElementById("label_deltatime").innerText = _jaTime.DeltaTime;
+
+        document.getElementById("scrollbar").innerText = _jaWindow.element.scrollbar.width;
+
+        document.getElementById("wx").innerText = _jaWindow.size.XbyY();
+        document.getElementById("wy").innerText = _jaWindow.size.ypx();
+
+        //document.getElementById("label_ftlt").innerText = _jaWindow.element.topLeft.position.top();
+        //document.getElementById("label_ftlb").innerText = _jaWindow.element.topLeft.position.bottom();
+        //document.getElementById("label_ftll").innerText = _jaWindow.element.topLeft.position.left();
+        //document.getElementById("label_ftlr").innerText = _jaWindow.element.topLeft.position.right();
+
+        //document.getElementById("label_ftrt").innerText = _jaWindow.element.topRight.position.top();
+        //document.getElementById("label_ftrb").innerText = _jaWindow.element.topRight.position.bottom();
+        //document.getElementById("label_ftrl").innerText = _jaWindow.element.topRight.position.left();
+        //document.getElementById("label_ftrr").innerText = _jaWindow.element.topRight.position.right();
+
+        //document.getElementById("label_bllt").innerText = _jaWindow.element.bottomLeft.position.top();
+        //document.getElementById("label_bllb").innerText = _jaWindow.element.bottomLeft.position.bottom();
+        //document.getElementById("label_blll").innerText = _jaWindow.element.bottomLeft.position.left();
+        //document.getElementById("label_bllr").innerText = _jaWindow.element.bottomLeft.position.right();
+
+        //document.getElementById("label_brlt").innerText = _jaWindow.element.bottomRight.position.top();
+        //document.getElementById("label_brlb").innerText = _jaWindow.element.bottomRight.position.bottom();
+        //document.getElementById("label_brll").innerText = _jaWindow.element.bottomRight.position.left();
+        //document.getElementById("label_brlr").innerText = _jaWindow.element.bottomRight.position.right();
+
+        //document.getElementById("teste17").style.position = "absolute";
+        //document.getElementById("teste17").style.top = _jaWindow.element.bottomRight.position.top() + "px";
+
+
+    });
+
     _jaUpdate(function () {
         if (index < limit) {
             _jaMoveLeftFoward(".el_30x30 um", 4);
@@ -94,7 +209,7 @@
 
             index++;
         }
-        
+
     })
     _jaUpdate(function () { if (index >= 100) { index = 0; } });
 </script>
