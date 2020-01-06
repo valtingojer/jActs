@@ -15,7 +15,7 @@
     }
 
     .fps-display {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         padding: 5px;
@@ -56,44 +56,54 @@
         <br />
         <div class="inner-display" style="top: 90px"><h1>scrollbar width: <span id="scrollbar"></span></h1></div>
 
-        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptotop"></span></h1></div>
-        
-        <br />
-        <div class="inner-display" style="top: 90px"><h1>DocSize: <span id="docsizeY"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>window bottom to doc top: <span id="winbottodoctop"></span></h1></div>
 
 
         <!--
-        <br />
-        <div class="inner-display" style="top: 90px"><h1>X: <span id="wx"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>Y: <span id="wy"></span></h1></div>
-        <br />
-        <div class="inner-display" style="top: 90px"><h1>Middle X: <span id="midx"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>Middle Y: <span id="midy"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptotop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptobot"></span></h1></div>
 
         <br />
-        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Top: <span id="label_ftlt"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft bottom: <span id="label_ftlb"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Left: <span id="label_ftll"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Right: <span id="label_ftlr"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>DocSize: <span id="docsizeY"></span></h1></div>
 
         <br />
-        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Top: <span id="label_ftrt"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopRight bottom: <span id="label_ftrb"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Left: <span id="label_ftrl"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedTopRight Right: <span id="label_ftrr"></span></h1></div>
-
+        <div class="inner-display" style="top: 90px"><h1>Doc to window top: <span id="doctowtop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Doc to window bot: <span id="doctowbot"></span></h1></div>
         <br />
-        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Top: <span id="label_bllt"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft bottom: <span id="label_bllb"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Left: <span id="label_blll"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Right: <span id="label_bllr"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Doc top to window top: <span id="doctoptowtop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Doc top top: <span id="doctoptotop"></span></h1></div>
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>X: <span id="wx"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>Y: <span id="wy"></span></h1></div>
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>Middle X: <span id="midx"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>Middle Y: <span id="midy"></span></h1></div>
 
-        <br />
-        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Top: <span id="label_brlt"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight bottom: <span id="label_brlb"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Left: <span id="label_brll"></span></h1></div>
-        <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Right: <span id="label_brlr"></span></h1></div>
-        -->
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Top: <span id="label_ftlt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft bottom: <span id="label_ftlb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Left: <span id="label_ftll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Right: <span id="label_ftlr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Top: <span id="label_ftrt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight bottom: <span id="label_ftrb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Left: <span id="label_ftrl"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Right: <span id="label_ftrr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Top: <span id="label_bllt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft bottom: <span id="label_bllb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Left: <span id="label_blll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Right: <span id="label_bllr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Top: <span id="label_brlt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight bottom: <span id="label_brlb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Left: <span id="label_brll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Right: <span id="label_brlr"></span></h1></div>
+    -->
     </div>
 
 
@@ -139,10 +149,20 @@
         document.getElementById("scrollbar").innerText = _jaWindow.element.scrollbar.width;
 
 
-        document.getElementById("toptotop").innerText = _jaWindow.offset.top.toDocumentTop();
+        document.getElementById("winbottodoctop").innerText = _jaWindow.offset.bottom.toDocumentTop();
+        
 
-        document.getElementById("docsizeY").innerText = _jaDocument.size.y();
+        //document.getElementById("toptotop").innerText = _jaWindow.offset.top.toDocumentTop();
+        //document.getElementById("toptobot").innerText = _jaWindow.offset.top.toDocumentBottom();
 
+        //document.getElementById("docsizeY").innerText = _jaDocument.size.y();
+
+        //document.getElementById("doctowtop").innerText = _jaDocument.offset.bottom.toWindowTop();
+        //document.getElementById("doctowbot").innerText = _jaDocument.offset.bottom.toWindowBottom();
+
+
+        //document.getElementById("doctoptowtop").innerText = _jaDocument.offset.top.toWindowTop();
+        //document.getElementById("doctoptotop").innerText = _jaDocument.position.top();
 
         // document.getElementById("wx").innerText = _jaWindow.size.xpx();
         // document.getElementById("wy").innerText = _jaWindow.size.ypx();

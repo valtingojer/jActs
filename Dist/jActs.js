@@ -30,37 +30,64 @@ var _jaFrame = {
     DeltaTime : 0, //Time between frames
     fps: 0, //Frames peer second, limited by INTERNAL_JA_VARIABLES.MinimumRefreshTime
 }
+var _jaMathHelper = {
+    MaxDecimalPlaceNotFixed: function (number, decimalPlaces = 2) {
+        var intNumber = parseInt(number);
+        var fixedNumber = number.toFixed(decimalPlaces);
+        return (intNumber == fixedNumber) ? intNumber : fixedNumber;
+    },
+};
 var _jActsWindowSizeHelper = function (action) {
-    var totalTop = function (id) {
-        return document.getElementById(id).offsetTop + window.scrollY;
-    };
+    var totalTop = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetTop + _jaWindow.scroll.y());   };
+    var offsetLeft = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetLeft); };
+
     switch (action) {
         //absolute positions
         //topleft
         case "TopLeft_offset_top": return totalTop(_jaWindow.element.topLeft.id);
-        case "TopLeft_offset_left": return document.getElementById(_jaWindow.element.topLeft.id).offsetLeft;
+        case "TopLeft_offset_left": return offsetLeft(_jaWindow.element.topLeft.id);
         //topRight
         case "TopRight_offset_top": return totalTop(_jaWindow.element.topRight.id);
-        case "TopRight_offset_left": return document.getElementById(_jaWindow.element.topRight.id).offsetLeft;
+        case "TopRight_offset_left": return offsetLeft(_jaWindow.element.topRight.id);
         //bottomLeft
         case "BottomLeft_offset_top": return totalTop(_jaWindow.element.bottomLeft.id);
-        case "BottomLeft_offset_left": return document.getElementById(_jaWindow.element.bottomLeft.id).offsetLeft;
+        case "BottomLeft_offset_left": return offsetLeft(_jaWindow.element.bottomLeft.id);
         //bottomRight
         case "BottomRight_offset_top": return totalTop(_jaWindow.element.bottomRight.id);
-        case "BottomRight_offset_left": return document.getElementById(_jaWindow.element.bottomRight.id).offsetLeft;
+        case "BottomRight_offset_left": return offsetLeft(_jaWindow.element.bottomRight.id);
 
-        case "GetXSize": return _jaWindow.element.topLeft.position.right();
-        case "GetYSize": return _jaWindow.element.topLeft.position.bottom();
+        case "GetXSize": return _jaWindow.element.topLeft.position.right() - _jaWindow.element.topLeft.position.left();
+        case "GetYSize": return _jaWindow.element.topLeft.position.bottom() - _jaWindow.element.topLeft.position.top();
 
-        case "GetMidleX": return _jaWindow.element.topLeft.position.right() / 2;
-        case "GetMidleY": return _jaWindow.element.topLeft.position.bottom() / 2;
+        case "GetMidleX": return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.topLeft.position.right() / 2);
+        case "GetMidleY": return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.topLeft.position.bottom() / 2);
 
-        case "DocumentSize": return document.getElementById(_jaDocument.element.top.id).getBoundingClientRect().top; // + window.scrollY;
+        case "WindowBottomToDocumentTop":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.bottomLeft.position.top() - _jaDocument.position.top());
+
+        case "DocumentSize":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        case "DocumentTopPos":
+            var el = document.getElementById(_jaDocument.element.top.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        case "DocumentTopWindowTop":
+            var el = document.getElementById(_jaDocument.element.top.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaDocument.position.top() + _jaWindow.scroll.y());
+        case "DocumentToWindowTop":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top);
+        case "DocumentToWindowBottom":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top - _jaWindow.size.y());
 
         default:
     }
 };
 var _jaWindow = {
+    scroll: {
+        y: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
+    },
     element: {
         scrollbar: {
             width: window.innerWidth - document.documentElement.clientWidth, //Todo leftcorner - element 100 width
@@ -116,12 +143,12 @@ var _jaWindow = {
     },
     offset: {
         top: {
-            toDocumentTop: function(){ return window.scrollY; },
-            toDocumentBottom: 0,
+            toDocumentTop: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.scroll.y()) },
+            toDocumentBottom: function () { return _jaDocument.offset.bottom.toWindowTop(); },
         },
         bottom: {
-            toDocumentTop: 0,
-            toDocumentBottom: 0,
+            toDocumentTop: function () { return _jActsWindowSizeHelper('WindowBottomToDocumentTop'); },
+            toDocumentBottom: function () { return _jaDocument.offset.bottom.toWindowBottom(); },
         },
     },
 }
@@ -134,9 +161,19 @@ var _jaDocument = {
     size: {
         y: function(){ return _jActsWindowSizeHelper("DocumentSize"); },
     },
+    position: {
+        top: function () { return _jActsWindowSizeHelper("DocumentTopPos"); },
+        bottom: function () { return _jActsWindowSizeHelper("DocumentSize"); },
+    },
     offset: {
-        toWindowTop: 0,
-        toWindowBottom: 0,
+        top: {
+            toWindowTop: function () { return _jActsWindowSizeHelper("DocumentTopWindowTop"); },
+            toWindowBottom: function () { return _jActsWindowSizeHelper('WindowBottomToDocumentTop'); },
+        },
+        bottom: {
+            toWindowTop: function () { return _jActsWindowSizeHelper("DocumentToWindowTop"); },
+            toWindowBottom: function () { return _jActsWindowSizeHelper("DocumentToWindowBottom"); },
+        },
     },
 }
 /*~******************************************************~*/
