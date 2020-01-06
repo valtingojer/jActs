@@ -54,13 +54,22 @@
         <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
 
         <br />
-        <div class="inner-display" style="top: 90px"><h1>scrollbar: <span id="scrollbar"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>scrollbar width: <span id="scrollbar"></span></h1></div>
 
+        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptotop"></span></h1></div>
+        
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>DocSize: <span id="docsizeY"></span></h1></div>
+
+
+        <!--
         <br />
         <div class="inner-display" style="top: 90px"><h1>X: <span id="wx"></span></h1></div>
         <div class="inner-display" style="top: 90px"><h1>Y: <span id="wy"></span></h1></div>
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>Middle X: <span id="midx"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Middle Y: <span id="midy"></span></h1></div>
 
-        <!--
         <br />
         <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Top: <span id="label_ftlt"></span></h1></div>
         <div class="inner-display" style="top: 90px"><h1>FixedTopLeft bottom: <span id="label_ftlb"></span></h1></div>
@@ -129,8 +138,17 @@
 
         document.getElementById("scrollbar").innerText = _jaWindow.element.scrollbar.width;
 
-        document.getElementById("wx").innerText = _jaWindow.size.XbyY();
-        document.getElementById("wy").innerText = _jaWindow.size.ypx();
+
+        document.getElementById("toptotop").innerText = _jaWindow.offset.top.toDocumentTop();
+
+        document.getElementById("docsizeY").innerText = _jaDocument.size.y();
+
+
+        // document.getElementById("wx").innerText = _jaWindow.size.xpx();
+        // document.getElementById("wy").innerText = _jaWindow.size.ypx();
+
+        // document.getElementById("midx").innerText = _jaWindow.middle.x();
+        // document.getElementById("midy").innerText = _jaWindow.middle.y();
 
         //document.getElementById("label_ftlt").innerText = _jaWindow.element.topLeft.position.top();
         //document.getElementById("label_ftlb").innerText = _jaWindow.element.topLeft.position.bottom();

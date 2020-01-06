@@ -52,6 +52,11 @@ var _jActsWindowSizeHelper = function (action) {
         case "GetXSize": return _jaWindow.element.topLeft.position.right();
         case "GetYSize": return _jaWindow.element.topLeft.position.bottom();
 
+        case "GetMidleX": return _jaWindow.element.topLeft.position.right() / 2;
+        case "GetMidleY": return _jaWindow.element.topLeft.position.bottom() / 2;
+
+        case "DocumentSize": return document.getElementById(_jaDocument.element.top.id).getBoundingClientRect().top; // + window.scrollY;
+
         default:
     }
 };
@@ -106,12 +111,12 @@ var _jaWindow = {
         XbyY: function () { return _jActsWindowSizeHelper("GetXSize").toString() + "x" + _jActsWindowSizeHelper("GetYSize").toString() },
     },
     middle: {
-        y: 0,
-        x: 0,
+        x: function(){ return _jActsWindowSizeHelper("GetMidleX"); },
+        y: function(){ return _jActsWindowSizeHelper("GetMidleY"); },
     },
     offset: {
         top: {
-            toDocumentTop: 0,
+            toDocumentTop: function(){ return window.scrollY; },
             toDocumentBottom: 0,
         },
         bottom: {
@@ -122,8 +127,12 @@ var _jaWindow = {
 }
 
 var _jaDocument = {
+    element:{
+        top : { id: "jacts-absolute-top" },
+        bottom : { id: "jacts-absolute-bottom" },
+    },
     size: {
-        y: 0,
+        y: function(){ return _jActsWindowSizeHelper("DocumentSize"); },
     },
     offset: {
         toWindowTop: 0,
