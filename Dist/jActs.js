@@ -30,13 +30,7 @@ var _jaFrame = {
     DeltaTime : 0, //Time between frames
     fps: 0, //Frames peer second, limited by INTERNAL_JA_VARIABLES.MinimumRefreshTime
 }
-var _jaMathHelper = {
-    MaxDecimalPlaceNotFixed: function (number, decimalPlaces = 2) {
-        var intNumber = parseInt(number);
-        var fixedNumber = number.toFixed(decimalPlaces);
-        return (intNumber == fixedNumber) ? intNumber : fixedNumber;
-    },
-};
+
 var _jActsWindowSizeHelper = function (action) {
     var totalTop = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetTop + _jaWindow.scroll.y());   };
     var offsetLeft = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetLeft); };
@@ -65,12 +59,7 @@ var _jActsWindowSizeHelper = function (action) {
         case "WindowBottomToDocumentTop":
             return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.bottomLeft.position.top() - _jaDocument.position.top());
 
-        case "DocumentSize":
-            var el = document.getElementById(_jaDocument.element.bottom.id);
-            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
-        case "DocumentTopPos":
-            var el = document.getElementById(_jaDocument.element.top.id);
-            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+
         case "DocumentTopWindowTop":
             var el = document.getElementById(_jaDocument.element.top.id);
             return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaDocument.position.top() + _jaWindow.scroll.y());
@@ -80,8 +69,20 @@ var _jActsWindowSizeHelper = function (action) {
         case "DocumentToWindowBottom":
             var el = document.getElementById(_jaDocument.element.bottom.id);
             return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top - _jaWindow.size.y());
+        case "DocumentTopPos":
+            var el = document.getElementById(_jaDocument.element.top.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        
+        
+        case "DocumentYSize":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        case "DocumentXSize":
+        break;
+        
+        
 
-        default:
+        default: break;
     }
 };
 var _jaWindow = {
@@ -159,11 +160,12 @@ var _jaDocument = {
         bottom : { id: "jacts-absolute-bottom" },
     },
     size: {
-        y: function(){ return _jActsWindowSizeHelper("DocumentSize"); },
+        x: function(){ return _jActsWindowSizeHelper("DocumentXSize"); },
+        y: function(){ return _jActsWindowSizeHelper("DocumentYSize"); },
     },
     position: {
         top: function () { return _jActsWindowSizeHelper("DocumentTopPos"); },
-        bottom: function () { return _jActsWindowSizeHelper("DocumentSize"); },
+        bottom: function () { return _jActsWindowSizeHelper("DocumentYSize"); },
     },
     offset: {
         top: {
@@ -344,10 +346,19 @@ var _jActsPrepareAmbient = {
         holder.appendChild(bottom);
     },
 
+    createHundredPercentElement: function(){
+        var elclass = 'height: 100%; width: 100%; background-color: black; position: fixed; z-index: -99999;';
+        var el = document.createElement("div");
+        el.style = elclass;
+        var holder = document.getElementById('jacts-main-holder');
+        holder.appendChild(el);
+    },
+
     init: function () {
         this.createMainHolder();
         this.createFixedReferences();
         this.createAbsoluteReferences();
+        this.createHundredPercentElement();
     },
 }
 
@@ -571,6 +582,14 @@ var _jActsHelper = function (action, element) {
         default:
             break;
     }
+};
+
+var _jaMathHelper = {
+    MaxDecimalPlaceNotFixed: function (number, decimalPlaces = 2) {
+        var intNumber = parseInt(number);
+        var fixedNumber = parseInt(number).toFixed(decimalPlaces);
+        return (intNumber == fixedNumber) ? intNumber : fixedNumber;
+    },
 };
 
 var _jActsMovementsHelper = function (origin, direction, elCode, factor) {
