@@ -78,21 +78,45 @@ var _jActsWindowSizeHelper = function (action) {
             var el = document.getElementById(_jaDocument.element.bottom.id);
             return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
         case "DocumentXSize":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
         break;
-        
-        
+
+        case "rectX":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
+        case "rectY":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetHeight);
+        case "screenX":
+            var el = document.getElementById(_jaWindow.element.screenRect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
+        case "screenY":
+            var el = document.getElementById(_jaWindow.element.screenRect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetHeight);
+        case "VerticalScroolWidth":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.screenRect.size.x() - _jaWindow.rect.size.x());
+        case "HorizontalScrollHeight":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.screenRect.size.y() - _jaWindow.rect.size.y());
+        case "VerticalScrollExsit": return (_jaWindow.screenRect.size.x() != _jaWindow.rect.size.x());
+        case "HorizontalScrollExists": return (_jaWindow.screenRect.size.y() != _jaWindow.rect.size.y());
 
         default: break;
     }
 };
 var _jaWindow = {
     scroll: {
+        vertical: {
+            exist: function () { return _jActsWindowSizeHelper("VerticalScrollExsit"); },
+            width: function () { return _jActsWindowSizeHelper("VerticalScroolWidth"); },
+        },
+        horizontal: {
+            exist: function () { return _jActsWindowSizeHelper("HorizontalScrollExists"); },
+            height: function () { return _jActsWindowSizeHelper("HorizontalScrollHeight"); },
+        },
         y: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
     },
     element: {
-        scrollbar: {
-            width: window.innerWidth - document.documentElement.clientWidth, //Todo leftcorner - element 100 width
-        },
         topLeft: {
             id: "jacts-fixed-top-left",
             position: {
@@ -129,6 +153,7 @@ var _jaWindow = {
                 right: function () { return _jActsWindowSizeHelper('BottomLeft_offset_left'); },
             },
         },
+        screenRect: { id : "jacts-screen-rect" },
     },
     size: {
         x: function () { return _jActsWindowSizeHelper("GetXSize"); },
@@ -152,12 +177,25 @@ var _jaWindow = {
             toDocumentBottom: function () { return _jaDocument.offset.bottom.toWindowBottom(); },
         },
     },
+    rect: {
+        size: {
+            x: function () { return _jActsWindowSizeHelper("rectX"); },
+            y: function () { return _jActsWindowSizeHelper("rectY"); },
+        },
+    },
+    screenRect: {
+        size: {
+            x: function () { return _jActsWindowSizeHelper("screenX"); },
+            y: function () { return _jActsWindowSizeHelper("screenY"); }, 
+        },
+    },
 }
 
 var _jaDocument = {
     element:{
         top : { id: "jacts-absolute-top" },
-        bottom : { id: "jacts-absolute-bottom" },
+        bottom: { id: "jacts-absolute-bottom" },
+        rect: { id: "jacts-hundred-percent-rect" },
     },
     size: {
         x: function(){ return _jActsWindowSizeHelper("DocumentXSize"); },
@@ -347,9 +385,21 @@ var _jActsPrepareAmbient = {
     },
 
     createHundredPercentElement: function(){
-        var elclass = 'height: 100%; width: 100%; background-color: black; position: fixed; z-index: -99999;';
         var el = document.createElement("div");
-        el.style = elclass;
+        el = this.setFixedAndZindex(el);
+        el.style.width = "100%";
+        el.style.height = "100%";
+        el.id = "jacts-hundred-percent-rect";
+        var holder = document.getElementById('jacts-main-holder');
+        holder.appendChild(el);
+    },
+
+    createScreenRectElement: function () {
+        var el = document.createElement("div");
+        el = this.setFixedAndZindex(el);
+        el.style.width = "100vw";
+        el.style.height = "100vh";
+        el.id = "jacts-screen-rect";
         var holder = document.getElementById('jacts-main-holder');
         holder.appendChild(el);
     },
@@ -359,6 +409,7 @@ var _jActsPrepareAmbient = {
         this.createFixedReferences();
         this.createAbsoluteReferences();
         this.createHundredPercentElement();
+        this.createScreenRectElement();
     },
 }
 
@@ -550,7 +601,7 @@ var _jaDoThe = function (action) {
 
 /*~******************************************************~*/
 /*~******************************************************~*/
-/*HELPER actions*/
+/*HELPERS */
 /*~******************************************************~*/
 /*~******************************************************~*/
 var _jActsHelper = function (action, element) {

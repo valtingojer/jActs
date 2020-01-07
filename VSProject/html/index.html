@@ -54,10 +54,21 @@
         <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
 
         <br />
-        <div class="inner-display" style="top: 90px"><h1>scrollbar width: <span id="scrollbar"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>scrollbar hor: <span id="scrollbarHor"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>scrollbar ver: <span id="scrollbarVer"></span></h1></div>
 
         <div class="inner-display" style="top: 90px"><h1>window bottom to doc top: <span id="winbottodoctop"></span></h1></div>
 
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>rect X <span id="rectX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>rect X <span id="rectY"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>Win X <span id="winX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Win Y <span id="winY"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>screen X <span id="screenX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>screen Y <span id="screenY"></span></h1></div>
 
         <!--
 
@@ -146,11 +157,20 @@
         document.getElementById("label_fps").innerText = _jaFrame.fps;
         document.getElementById("label_deltatime").innerText = _jaTime.DeltaTime;
 
-        document.getElementById("scrollbar").innerText = _jaWindow.element.scrollbar.width;
+        document.getElementById("scrollbarVer").innerText = _jaWindow.scroll.vertical.exist() + " " + _jaWindow.scroll.vertical.width();
+        document.getElementById("scrollbarHor").innerText = _jaWindow.scroll.horizontal.exist() + " " + _jaWindow.scroll.horizontal.height();
+
 
 
         document.getElementById("winbottodoctop").innerText = _jaWindow.offset.bottom.toDocumentTop();
-        
+        document.getElementById("rectX").innerText = _jaWindow.rect.size.x();
+        document.getElementById("rectY").innerText = _jaWindow.rect.size.y();
+
+        document.getElementById("winX").innerText = _jaWindow.size.x();
+        document.getElementById("winY").innerText = _jaWindow.size.y();
+
+        document.getElementById("screenX").innerText = _jaWindow.screenRect.size.x();
+        document.getElementById("screenY").innerText = _jaWindow.screenRect.size.y();
 
         //document.getElementById("toptotop").innerText = _jaWindow.offset.top.toDocumentTop();
         //document.getElementById("toptobot").innerText = _jaWindow.offset.top.toDocumentBottom();
