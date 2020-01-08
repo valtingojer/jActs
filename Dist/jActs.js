@@ -80,7 +80,10 @@ var _jActsWindowSizeHelper = function (action) {
         case "DocumentXSize":
             var el = document.getElementById(_jaDocument.element.rect.id);
             return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
-        break;
+            case "DocumentXSizeWithScroll":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(offsetLeft(_jaWindow.element.topRight.id) + _jaWindow.scroll.x());
+            case "DocumentYSizeWithScroll":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.bottomLeft.position.top() + _jaWindow.scroll.y());
 
         case "rectX":
             var el = document.getElementById(_jaDocument.element.rect.id);
@@ -109,11 +112,18 @@ var _jaWindow = {
         vertical: {
             exist: function () { return _jActsWindowSizeHelper("VerticalScrollExsit"); },
             width: function () { return _jActsWindowSizeHelper("VerticalScroolWidth"); },
+            height: function(){ return _jActsWindowSizeHelper("DocumentYSize"); },
+            position: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
+            positionScrolled: function () { return _jActsWindowSizeHelper("DocumentYSizeWithScroll"); },
         },
         horizontal: {
             exist: function () { return _jActsWindowSizeHelper("HorizontalScrollExists"); },
             height: function () { return _jActsWindowSizeHelper("HorizontalScrollHeight"); },
+            //width: function () { return _jActsWindowSizeHelper("DocumentXSizeWithScroll"); }, /*TODO: Element dinâmic at end of document and get its position*/
+            positionScrolled: function () { return _jActsWindowSizeHelper("DocumentXSizeWithScroll"); },
+            position: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollX); },
         },
+        x: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollX); },
         y: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
     },
     element: {
