@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        //"src/**/*"
+        "*", "../html/registerModel.html", "../html/cdn.html", "Framework/js/jActs.js", "Framework/js/vars/generic.js"
+    ],
+    "exclude": [
+        //"dist",
+        //"node_modules"
+    ]
+}
