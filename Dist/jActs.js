@@ -31,6 +31,191 @@ var _jaFrame = {
     fps: 0, //Frames peer second, limited by INTERNAL_JA_VARIABLES.MinimumRefreshTime
 }
 
+var _jActsWindowSizeHelper = function (action) {
+    var totalTop = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetTop + _jaWindow.scroll.y());   };
+    var offsetLeft = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetLeft); };
+
+    switch (action) {
+        //absolute positions
+        //topleft
+        case "TopLeft_offset_top": return totalTop(_jaWindow.element.topLeft.id);
+        case "TopLeft_offset_left": return offsetLeft(_jaWindow.element.topLeft.id);
+        //topRight
+        case "TopRight_offset_top": return totalTop(_jaWindow.element.topRight.id);
+        case "TopRight_offset_left": return offsetLeft(_jaWindow.element.topRight.id);
+        //bottomLeft
+        case "BottomLeft_offset_top": return totalTop(_jaWindow.element.bottomLeft.id);
+        case "BottomLeft_offset_left": return offsetLeft(_jaWindow.element.bottomLeft.id);
+        //bottomRight
+        case "BottomRight_offset_top": return totalTop(_jaWindow.element.bottomRight.id);
+        case "BottomRight_offset_left": return offsetLeft(_jaWindow.element.bottomRight.id);
+
+        case "GetXSize": return _jaWindow.element.topLeft.position.right() - _jaWindow.element.topLeft.position.left();
+        case "GetYSize": return _jaWindow.element.topLeft.position.bottom() - _jaWindow.element.topLeft.position.top();
+
+        case "GetMidleX": return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.topLeft.position.right() / 2);
+        case "GetMidleY": return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.topLeft.position.bottom() / 2);
+
+        case "WindowBottomToDocumentTop":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.bottomLeft.position.top() - _jaDocument.position.top());
+
+
+        case "DocumentTopWindowTop":
+            var el = document.getElementById(_jaDocument.element.top.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaDocument.position.top() + _jaWindow.scroll.y());
+        case "DocumentToWindowTop":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top);
+        case "DocumentToWindowBottom":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top - _jaWindow.size.y());
+        case "DocumentTopPos":
+            var el = document.getElementById(_jaDocument.element.top.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        
+        
+        case "DocumentYSize":
+            var el = document.getElementById(_jaDocument.element.bottom.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.getBoundingClientRect().top + _jaWindow.scroll.y());
+        case "DocumentXSize":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
+        break;
+
+        case "rectX":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
+        case "rectY":
+            var el = document.getElementById(_jaDocument.element.rect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetHeight);
+        case "screenX":
+            var el = document.getElementById(_jaWindow.element.screenRect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
+        case "screenY":
+            var el = document.getElementById(_jaWindow.element.screenRect.id);
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetHeight);
+        case "VerticalScroolWidth":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.screenRect.size.x() - _jaWindow.rect.size.x());
+        case "HorizontalScrollHeight":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.screenRect.size.y() - _jaWindow.rect.size.y());
+        case "VerticalScrollExsit": return (_jaWindow.screenRect.size.x() != _jaWindow.rect.size.x());
+        case "HorizontalScrollExists": return (_jaWindow.screenRect.size.y() != _jaWindow.rect.size.y());
+
+        default: break;
+    }
+};
+var _jaWindow = {
+    scroll: {
+        vertical: {
+            exist: function () { return _jActsWindowSizeHelper("VerticalScrollExsit"); },
+            width: function () { return _jActsWindowSizeHelper("VerticalScroolWidth"); },
+        },
+        horizontal: {
+            exist: function () { return _jActsWindowSizeHelper("HorizontalScrollExists"); },
+            height: function () { return _jActsWindowSizeHelper("HorizontalScrollHeight"); },
+        },
+        y: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
+    },
+    element: {
+        topLeft: {
+            id: "jacts-fixed-top-left",
+            position: {
+                top: function () { return _jActsWindowSizeHelper('TopLeft_offset_top'); },
+                bottom: function () { return _jActsWindowSizeHelper('BottomLeft_offset_top'); },
+                left: function () { return _jActsWindowSizeHelper('TopLeft_offset_left'); },
+                right: function () { return _jActsWindowSizeHelper('TopRight_offset_left'); },
+            },
+        },
+        topRight: {
+            id: "jacts-fixed-top-right",
+            position: {
+                top: function () { return _jActsWindowSizeHelper('TopRight_offset_top'); },
+                bottom: function () { return _jActsWindowSizeHelper('BottomRight_offset_top'); },
+                left: function () { return _jActsWindowSizeHelper('TopRight_offset_left'); },
+                right: function () { return _jActsWindowSizeHelper('TopLeft_offset_left'); },
+            },
+        },
+        bottomLeft: {
+            id: "jacts-fixed-bottom-left",
+            position: {
+                top: function () { return _jActsWindowSizeHelper('BottomLeft_offset_top'); },
+                bottom: function () { return _jActsWindowSizeHelper('TopLeft_offset_top'); },
+                left: function () { return _jActsWindowSizeHelper('BottomLeft_offset_left'); },
+                right: function () { return _jActsWindowSizeHelper('BottomRight_offset_left'); },
+            },
+        },
+        bottomRight: {
+            id: "jacts-fixed-bottom-right",
+            position: {
+                top: function () { return _jActsWindowSizeHelper('BottomRight_offset_top'); },
+                bottom: function () { return _jActsWindowSizeHelper('TopRight_offset_top'); },
+                left: function () { return _jActsWindowSizeHelper('BottomRight_offset_left'); },
+                right: function () { return _jActsWindowSizeHelper('BottomLeft_offset_left'); },
+            },
+        },
+        screenRect: { id : "jacts-screen-rect" },
+    },
+    size: {
+        x: function () { return _jActsWindowSizeHelper("GetXSize"); },
+        y: function () { return _jActsWindowSizeHelper("GetYSize"); },
+        xpx: function () { return _jActsWindowSizeHelper("GetXSize").toString() + "px"; },
+        ypx: function () { return _jActsWindowSizeHelper("GetYSize").toString() + "px"; },
+        v2: function () { return [_jActsWindowSizeHelper("GetXSize"), _jActsWindowSizeHelper("GetYSize")] },
+        XbyY: function () { return _jActsWindowSizeHelper("GetXSize").toString() + "x" + _jActsWindowSizeHelper("GetYSize").toString() },
+    },
+    middle: {
+        x: function(){ return _jActsWindowSizeHelper("GetMidleX"); },
+        y: function(){ return _jActsWindowSizeHelper("GetMidleY"); },
+    },
+    offset: {
+        top: {
+            toDocumentTop: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.scroll.y()) },
+            toDocumentBottom: function () { return _jaDocument.offset.bottom.toWindowTop(); },
+        },
+        bottom: {
+            toDocumentTop: function () { return _jActsWindowSizeHelper('WindowBottomToDocumentTop'); },
+            toDocumentBottom: function () { return _jaDocument.offset.bottom.toWindowBottom(); },
+        },
+    },
+    rect: {
+        size: {
+            x: function () { return _jActsWindowSizeHelper("rectX"); },
+            y: function () { return _jActsWindowSizeHelper("rectY"); },
+        },
+    },
+    screenRect: {
+        size: {
+            x: function () { return _jActsWindowSizeHelper("screenX"); },
+            y: function () { return _jActsWindowSizeHelper("screenY"); }, 
+        },
+    },
+}
+
+var _jaDocument = {
+    element:{
+        top : { id: "jacts-absolute-top" },
+        bottom: { id: "jacts-absolute-bottom" },
+        rect: { id: "jacts-hundred-percent-rect" },
+    },
+    size: {
+        x: function(){ return _jActsWindowSizeHelper("DocumentXSize"); },
+        y: function(){ return _jActsWindowSizeHelper("DocumentYSize"); },
+    },
+    position: {
+        top: function () { return _jActsWindowSizeHelper("DocumentTopPos"); },
+        bottom: function () { return _jActsWindowSizeHelper("DocumentYSize"); },
+    },
+    offset: {
+        top: {
+            toWindowTop: function () { return _jActsWindowSizeHelper("DocumentTopWindowTop"); },
+            toWindowBottom: function () { return _jActsWindowSizeHelper('WindowBottomToDocumentTop'); },
+        },
+        bottom: {
+            toWindowTop: function () { return _jActsWindowSizeHelper("DocumentToWindowTop"); },
+            toWindowBottom: function () { return _jActsWindowSizeHelper("DocumentToWindowBottom"); },
+        },
+    },
+}
 /*~******************************************************~*/
 /*~******************************************************~*/
 /*Internal Mechanism Variables*/
@@ -96,6 +281,138 @@ var ___ANIMATE = function(now) {
         }
     }
 };
+
+
+/*~******************************************************~*/
+/*~******************************************************~*/
+/*Ambient Modifications*/
+/*~******************************************************~*/
+/*~******************************************************~*/
+
+var _jActsPrepareAmbient = {
+    setNumericPosition: function (el, top = 'unset', right = 'unset', bottom = 'unset', left = 'unset') {
+        if (!_jaIsNullEmptyOrUndefined(top)) {
+            el.style.top = top.toString() + "px";
+        }
+        if (!_jaIsNullEmptyOrUndefined(right)) {
+            el.style.right = right.toString() + "px";
+        }
+        if (!_jaIsNullEmptyOrUndefined(bottom)) {
+            el.style.bottom = bottom.toString() + "px";
+        }
+        if (!_jaIsNullEmptyOrUndefined(left)) {
+            el.style.left = left.toString() + "px";
+        }
+        return el;
+    },
+    setZindex: function (el) {
+        el.className = 'jacts-holder-debug-class';
+        el.style.zIndex = -9999;
+        return el;
+    },
+    setAbsoluePosition: function (el) {
+        el.style.position = "absolute";
+        return el;
+    },
+    setFixedPosition: function (el) {
+        el.style.position = "fixed";
+        return el;
+    },
+    setFixedAndZindex: function (el) {
+        return this.setFixedPosition(this.setZindex(el));
+    },
+    setAbsAndZindex: function (el) {
+        return this.setAbsoluePosition(this.setZindex(el));
+    },
+    createMainHolder: function () {
+        var mainHolder = document.createElement("div");
+        mainHolder.id = 'jacts-main-holder';
+        mainHolder = this.setAbsAndZindex(mainHolder);
+        mainHolder = this.setNumericPosition(mainHolder, '0', null, null, '0');
+        document.body.prepend(mainHolder);
+    },
+    createFixedReferences: function () {
+        var ref1 = document.createElement("div");
+        var ref2 = document.createElement("div");
+        var ref3 = document.createElement("div");
+        var ref4 = document.createElement("div");
+
+        ref1 = this.setFixedAndZindex(ref1);
+        ref2 = this.setFixedAndZindex(ref2);
+        ref3 = this.setFixedAndZindex(ref3);
+        ref4 = this.setFixedAndZindex(ref4);
+
+        var topLeft = this.setNumericPosition(ref1, '0', null, null, '0');
+        var topRight = this.setNumericPosition(ref2, '0', '0');
+        var bottomLeft = this.setNumericPosition(ref3, null, null, '0', '0');
+        var bottomRight = this.setNumericPosition(ref4, null, '0', '0', null);
+
+        topLeft.id = "jacts-fixed-top-left";
+        topRight.id = "jacts-fixed-top-right";
+        bottomLeft.id = "jacts-fixed-bottom-left";
+        bottomRight.id = "jacts-fixed-bottom-right";
+
+        topRight.style.float = "right";
+        bottomRight.style.float = "right";
+
+        var holder = document.getElementById('jacts-main-holder');
+
+        holder.appendChild(topLeft);
+        holder.appendChild(topRight);
+        holder.appendChild(bottomLeft);
+        holder.appendChild(bottomRight);
+    },
+    createAbsoluteReferences: function () {
+        var ref1 = document.createElement("div");
+        var ref2 = document.createElement("div");
+
+        ref1 = this.setAbsAndZindex(ref1);
+        ref2 = this.setZindex(ref2);
+
+        var top = this.setNumericPosition(ref1, '0', '0');
+        var bottom = this.setNumericPosition(ref2, null, null, '0', '0');
+
+        top.id = "jacts-absolute-top";
+        bottom.id = "jacts-absolute-bottom";
+
+        top.style.float = "right";
+        bottom.style.float = "right";
+
+        var holder = document.body;
+
+        holder.appendChild(top);
+        holder.appendChild(bottom);
+    },
+
+    createHundredPercentElement: function(){
+        var el = document.createElement("div");
+        el = this.setFixedAndZindex(el);
+        el.style.width = "100%";
+        el.style.height = "100%";
+        el.id = "jacts-hundred-percent-rect";
+        var holder = document.getElementById('jacts-main-holder');
+        holder.appendChild(el);
+    },
+
+    createScreenRectElement: function () {
+        var el = document.createElement("div");
+        el = this.setFixedAndZindex(el);
+        el.style.width = "100vw";
+        el.style.height = "100vh";
+        el.id = "jacts-screen-rect";
+        var holder = document.getElementById('jacts-main-holder');
+        holder.appendChild(el);
+    },
+
+    init: function () {
+        this.createMainHolder();
+        this.createFixedReferences();
+        this.createAbsoluteReferences();
+        this.createHundredPercentElement();
+        this.createScreenRectElement();
+    },
+}
+
 /*~******************************************************~*/
 /*~******************************************************~*/
 /*~Update and FixedUpdate~*/
@@ -223,8 +540,8 @@ var _jaMoveLeftBackward = function (elCode, factor = 1) {
     (ie.4)'.elementClass1 .Class2 .Class3' <- if does not work properly try previus
 
     Exemple of call based on id
-    (ie.1) _jaMoveLeftBackward('#elementId');
-    (ie.2) _jaMoveLeftBackward('#elementId', 10);
+    (ie.1) _jaMoveTopUpward('#elementId');
+    (ie.2) _jaMoveTopUpward('#elementId', 10);
  * 
  * @param {elCode} string
  * @param {factor} int
@@ -251,8 +568,8 @@ var _jaMoveTopUpward = function (elCode, factor = 1) {
     (ie.4)'.elementClass1 .Class2 .Class3' <- if does not work properly try previus
 
     Exemple of call based on id
-    (ie.1) _jaMoveLeftBackward('#elementId');
-    (ie.2) _jaMoveLeftBackward('#elementId', 10);
+    (ie.1) _jaMoveTopDownward('#elementId');
+    (ie.2) _jaMoveTopDownward('#elementId', 10);
  * 
  * @param {elCode} string
  * @param {factor} int
@@ -284,7 +601,7 @@ var _jaDoThe = function (action) {
 
 /*~******************************************************~*/
 /*~******************************************************~*/
-/*HELPER actions*/
+/*HELPERS */
 /*~******************************************************~*/
 /*~******************************************************~*/
 var _jActsHelper = function (action, element) {
@@ -316,6 +633,14 @@ var _jActsHelper = function (action, element) {
         default:
             break;
     }
+};
+
+var _jaMathHelper = {
+    MaxDecimalPlaceNotFixed: function (number, decimalPlaces = 2) {
+        var intNumber = parseInt(number);
+        var fixedNumber = parseInt(number).toFixed(decimalPlaces);
+        return (intNumber == fixedNumber) ? intNumber : fixedNumber;
+    },
 };
 
 var _jActsMovementsHelper = function (origin, direction, elCode, factor) {
@@ -419,6 +744,7 @@ var _jaIsFunction = function(functionToCheck) {
 /*~******************************************************~*/
 var _jaIni = function () {
     window.requestAnimationFrame(___ANIMATE);
+    _jActsPrepareAmbient.init();
     setInterval(function () { _jaDoThe("FixedUpdate"); }, INTERNAL_JA_VARIABLES.FixedUpdateDelay);
     if (_jaShowAbout) { console.log(_jaAboutVersion); }
 }
@@ -427,4 +753,6 @@ var _jaDoTheAutoIni = function(){
         _jaIni();
     }
 }
-_jaDoTheAutoIni();
+window.onload = function () {
+    _jaDoTheAutoIni();
+};

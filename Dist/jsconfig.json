@@ -6,7 +6,7 @@
     },
     "include": [
         //"src/**/*"
-        "*", "../html/registerModel.html"
+        "*", "../html/registerModel.html", "../html/cdn.html"
     ],
     "exclude": [
         //"dist",
