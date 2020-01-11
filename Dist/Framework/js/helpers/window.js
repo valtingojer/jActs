@@ -1,4 +1,5 @@
-﻿var _jActsWindowSizeHelper = function (action) {
+﻿
+var _jActsWindowSizeHelper = function (action) {
     var totalTop = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetTop + _jaWindow.scroll.y()); };
     var offsetLeft = function (id) { return _jaMathHelper.MaxDecimalPlaceNotFixed(document.getElementById(id).offsetLeft); };
 
@@ -47,7 +48,10 @@
         case "DocumentXSize":
             var el = document.getElementById(_jaDocument.element.rect.id);
             return _jaMathHelper.MaxDecimalPlaceNotFixed(el.offsetWidth);
-            break;
+        case "DocumentXSizeWithScroll":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(offsetLeft(_jaWindow.element.topRight.id) + _jaWindow.scroll.x());
+        case "DocumentYSizeWithScroll":
+            return _jaMathHelper.MaxDecimalPlaceNotFixed(_jaWindow.element.bottomLeft.position.top() + _jaWindow.scroll.y());
 
         case "rectX":
             var el = document.getElementById(_jaDocument.element.rect.id);

@@ -1,14 +1,20 @@
-﻿
-var _jaWindow = {
+﻿var _jaWindow = {
     scroll: {
         vertical: {
             exist: function () { return _jActsWindowSizeHelper("VerticalScrollExsit"); },
             width: function () { return _jActsWindowSizeHelper("VerticalScroolWidth"); },
+            height: function () { return _jActsWindowSizeHelper("DocumentYSize"); },
+            position: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
+            positionScrolled: function () { return _jActsWindowSizeHelper("DocumentYSizeWithScroll"); },
         },
         horizontal: {
             exist: function () { return _jActsWindowSizeHelper("HorizontalScrollExists"); },
             height: function () { return _jActsWindowSizeHelper("HorizontalScrollHeight"); },
+            //width: function () { return _jActsWindowSizeHelper("DocumentXSizeWithScroll"); }, /*TODO: Element dinâmic at end of document and get its position*/
+            positionScrolled: function () { return _jActsWindowSizeHelper("DocumentXSizeWithScroll"); },
+            position: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollX); },
         },
+        x: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollX); },
         y: function () { return _jaMathHelper.MaxDecimalPlaceNotFixed(window.scrollY); },
     },
     element: {
