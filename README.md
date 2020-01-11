@@ -39,12 +39,13 @@ _jaMoveTopUpward({Class or ID: ie '.myClass' or '#myID'}, {amounth to move, defa
 _jaMoveTopDownward({Class or ID: ie '.myClass' or '#myID'}, {amounth to move, default 1px});
 
 those can be combine with Update, Fixed Update or other ie:
-you can do something like
-    _jaUpdate(function () { 
+you can do something like:
+
+_jaUpdate(function () { 
         _jaMoveLeftFoward('#myObjectId', 2);
-    });
-  And your object will move 2px to positive left direction every frame refresh
+});
+
+And your object will move 2px to positive left direction every frame refresh.
   
-  
-  We are now working on keybinds... soon we have news in here
+We are now working on keybinds... soon we have news in here
 
