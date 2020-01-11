@@ -2,5 +2,9 @@
   {
     "outputFile": "Dist/jActs.es5.js",
     "inputFile": "Dist/jActs.js"
+  },
+  {
+    "outputFile": "Dist/Framework/css/beta/tests.css",
+    "inputFile": "Dist/Framework/css/beta/tests.less"
   }
 ]

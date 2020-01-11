@@ -67,12 +67,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dist\jActs.es5.js">
-      <DependentUpon>jActs.js</DependentUpon>
+    <Content Include="Dist\Framework\css\beta\tests.css">
+      <DependentUpon>tests.less</DependentUpon>
     </Content>
-    <Content Include="Dist\jActs.es5.min.js">
-      <DependentUpon>jActs.es5.js</DependentUpon>
+    <Content Include="Dist\Framework\css\beta\tests.min.css">
+      <DependentUpon>tests.css</DependentUpon>
     </Content>
+    <Content Include="Dist\Framework\js\ambient\prepare.js" />
+    <Content Include="Dist\Framework\js\animate\event.js" />
+    <Content Include="Dist\Framework\js\beta\tests.js" />
+    <Content Include="Dist\Framework\js\constants\about.js" />
+    <Content Include="Dist\Framework\js\constants\generic.js" />
+    <Content Include="Dist\Framework\js\helpers\classAndId.js" />
+    <Content Include="Dist\Framework\js\helpers\math.js" />
+    <Content Include="Dist\Framework\js\helpers\movements.js" />
+    <Content Include="Dist\Framework\js\helpers\window.js" />
+    <Content Include="Dist\Framework\js\jActs.js" />
+    <Content Include="Dist\Framework\js\move\leftAxis.js" />
+    <Content Include="Dist\Framework\js\move\topAxis.js" />
+    <Content Include="Dist\Framework\js\vars\generic.js" />
+    <Content Include="Dist\Framework\js\vars\commum\document.js" />
+    <Content Include="Dist\Framework\js\vars\commum\frame.js" />
+    <Content Include="Dist\Framework\js\vars\commum\time.js" />
+    <Content Include="Dist\Framework\js\vars\commum\window.js" />
     <Content Include="Dist\jActs.js" />
     <Content Include="html\registerModel.html" />
     <Content Include="html\index.html" />
@@ -88,6 +105,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Dist\Framework\css\beta\tests.less" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -96,6 +114,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
