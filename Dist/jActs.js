@@ -32,6 +32,8 @@ var _jActs_src = {
         "helpers/movements",
         "helpers/window",
 
+        "keys/bind",
+
         "move/leftAxis",
         "move/topAxis",
 
