@@ -69,27 +69,26 @@ _jaUpdate(function () {
 And your object will move 2px to positive left direction every frame refresh.
 #
 #
-Using Keybinds
-#
-You can bind keys by using the event keyBind on keyDown or KeyUp, the keyDown event also tracks for key being pressed. 
-#
-_jaKeyBind.Down.a(function () {
-	console.log("key <a> has being pressed.");
-	//all your code in here
-});
+Using Keybinds  
+You can bind keys by using the event keyBind on keyDown or KeyUp, the keyDown event also tracks for key being pressed.   
+  
+_jaKeyBind.Down.a(function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	console.log("key <a> has being pressed.");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	//all your code in here  
+});  
 Its is important to remember that all jActs framework is binded to moments, it means that you have to be under some ot thouse
 _jaAwake, _jaStart, _jaUpdate, _jaFixedUpdate, _jaAfterLoadFuncs
 #
-exemple of bindin key Down and key Up with an event
-#
+exemple of bindin key Down and key Up with an event  
+  
 _jaAfterLoadFuncs(function () {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	_jaKeyBind.Down.a(function () {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		console.log("key <a> has being pressed.");  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		//Do your stuff when the key a is pressed  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	_jaKeyBind.UpRelase.a(function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	_jaKeyBind.UpRelase.a(function () {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		console.log("Key <a> was released.");  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		//Do your stuff when the key a is released  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
 });  
 #
