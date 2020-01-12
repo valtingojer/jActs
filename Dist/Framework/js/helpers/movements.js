@@ -2,7 +2,7 @@
 var _jActsMovementsHelper = function (origin, direction, elCode, factor) {
     this.getCalcBasedOnDirection = function (position) {
         switch (direction) {
-            case "foward": return position + factor;
+            case "forward": return position + factor;
             case "backward": return position - factor;
             case "upward": return position - factor;
             case "downward": return position + factor;

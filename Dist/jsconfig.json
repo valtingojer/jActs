@@ -6,7 +6,7 @@
     },
     "include": [
         //"src/**/*"
-        "*", "../html/registerModel.html", "../html/cdn.html", "Framework/js/jActs.js", "Framework/js/vars/generic.js"
+        "*", "../html/registerModel.html", "../html/cdn.html", "Framework/js/jActs.js", "Framework/js/vars/generic.js", "../html/FullDisplay.html", "../html/Keys.html"
     ],
     "exclude": [
         //"dist",

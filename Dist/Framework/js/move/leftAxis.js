@@ -5,7 +5,7 @@
 /*~******************************************************~*/
 /**
  * Description. 
-   Move element foward on left css position
+   Move element forward on left css position
 
    REQUIRIMENTS: 
    (1) any css position explicity applyed on it
@@ -21,15 +21,15 @@
     (ie.4)'.elementClass1 .Class2 .Class3' <- set of classes . if does not work properly try previous
 
     Exemple of call based on id
-    (ie.1) _jaMoveLeftFoward('#elementId');
-    (ie.2) _jaMoveLeftFoward('#elementId', 10); 
+    (ie.1) _jaMoveLeftForward('#elementId');
+    (ie.2) _jaMoveLeftForward('#elementId', 10); 
  * 
  * @param {elCode} string
  * @param {factor} int
  * 
  */
-var _jaMoveLeftFoward = function (elCode, factor = 1) {
-    _jActsMovementsHelper("left", "foward", elCode, factor);
+var _jaMoveLeftForward = function (elCode, factor = 1) {
+    _jActsMovementsHelper("left", "forward", elCode, factor);
 }
 /**
  * Description. 
