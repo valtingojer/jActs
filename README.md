@@ -76,7 +76,7 @@ _jaKeyBind.Down.a(function () {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	console.log("key <a> has being pressed.");  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	//all your code in here  
 });  
-Its is important to remember that all jActs framework is binded to moments, it means that you have to be under some ot thouse
+Its is important to remember that all jActs framework is binded to moments, it means that you have to be under some of theese
 _jaAwake, _jaStart, _jaUpdate, _jaFixedUpdate, _jaAfterLoadFuncs
 #
 exemple of bindin key Down and key Up with an event  
