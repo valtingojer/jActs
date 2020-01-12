@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Development Tests</title>
+    <script src="../Dist/jActs.js"></script>
+</head>
+<style></style>
+
+<body style="display: grid; place-items: center; place-content: center;">
+    
+    <div class="fps-display">
+        <div class="inner-display" style="top: 0px"><h1>Seconds: <span id="label_secondcount"></span></h1></div>
+        <div class="inner-display" style="top: 45px"><h1>FPS: <span id="label_fps"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
+    </div>
+
+    <div id="keysEl" class="el_30x30"></div><br />
+
+</body>
+</html>
+<style>
+</style>
+<script>
+
+    _jaAfterLoadFuncs(function () {
+        
+        _jaKeyBind.Down.a(function () {
+            console.log("Comando <a>.");
+        });
+        _jaKeyBind.Down.b(function () {
+            console.log("Comando <b>.");
+        }); _jaKeyBind.Down.c(function () {
+            console.log("Comando <c>.");
+        }); _jaKeyBind.Down.d(function () {
+            console.log("Comando <d>.");
+        }); _jaKeyBind.Down.e(function () {
+            console.log("Comando <e>.");
+        }); _jaKeyBind.Down.f(function () {
+            console.log("Comando <f>.");
+        }); _jaKeyBind.Down.g(function () {
+            console.log("Comando <g>.");
+        }); _jaKeyBind.Down.h(function () {
+            console.log("Comando <h>.");
+        }); _jaKeyBind.Down.i(function () {
+            console.log("Comando <i>.");
+        }); _jaKeyBind.Down.j(function () {
+            console.log("Comando <j>.");
+        }); _jaKeyBind.Down.k(function () {
+            console.log("Comando <k>.");
+        }); _jaKeyBind.Down.l(function () {
+            console.log("Comando <l>.");
+        }); _jaKeyBind.Down.m(function () {
+            console.log("Comando <m>.");
+        }); _jaKeyBind.Down.n(function () {
+            console.log("Comando <n>.");
+        }); _jaKeyBind.Down.o(function () {
+            console.log("Comando <o>.");
+        }); _jaKeyBind.Down.p(function () {
+            console.log("Comando <p>.");
+        }); _jaKeyBind.Down.q(function () {
+            console.log("Comando <q>.");
+        }); _jaKeyBind.Down.r(function () {
+            console.log("Comando <r>.");
+        }); _jaKeyBind.Down.s(function () {
+            console.log("Comando <s>.");
+        }); _jaKeyBind.Down.t(function () {
+            console.log("Comando <t>.");
+        }); _jaKeyBind.Down.u(function () {
+            console.log("Comando <u>.");
+        }); _jaKeyBind.Down.v(function () {
+            console.log("Comando <v>.");
+        }); _jaKeyBind.Down.w(function () {
+            console.log("Comando <w>.");
+        }); _jaKeyBind.Down.x(function () {
+            console.log("Comando <x>.");
+        }); _jaKeyBind.Down.y(function () {
+            console.log("Comando <y>.");
+        }); _jaKeyBind.Down.z(function () {
+            console.log("Comando <z>.");
+        });
+    
+        _jaKeyBind.Down.num0(function () {
+            console.log("Comando <0>.");
+        });
+    
+        _jaKeyBind.Down.num1(function () {
+            console.log("Comando <1>.");
+        });
+        _jaKeyBind.Down.num2(function () {
+            console.log("Comando <2>.");
+        });
+        _jaKeyBind.Down.num3(function () {
+            console.log("Comando <3>.");
+        });
+        _jaKeyBind.Down.num4(function () {
+            console.log("Comando <4>.");
+        });
+        _jaKeyBind.Down.num5(function () {
+            console.log("Comando <5>.");
+        });
+        _jaKeyBind.Down.num6(function () {
+            console.log("Comando <6>.");
+        });
+        _jaKeyBind.Down.num7(function () {
+            console.log("Comando <7>.");
+        });
+        _jaKeyBind.Down.num8(function () {
+            console.log("Comando <8>.");
+        });
+        _jaKeyBind.Down.num9(function () {
+            console.log("Comando <9>.");
+        });
+        
+        _jaKeyBind.Down.fire.num1(function () {
+            console.log("Comando <fire 1>.");
+        });
+    
+        _jaKeyBind.Down.enter(function () {
+            console.log("Comando <enter>.");
+        });
+        _jaKeyBind.Down.jump(function () {
+            console.log("Comando <space>.");
+        });
+    
+    
+    
+
+
+
+    });
+
+    _jaAfterLoadFuncs(function () {
+        
+    
+        _jaKeyBind.UpRelase.a(function () {
+            console.log("Largou Comando <a>.");
+        });
+        _jaKeyBind.UpRelase.b(function () {
+            console.log("Largou Comando <b>.");
+        }); _jaKeyBind.UpRelase.c(function () {
+            console.log("Largou Comando <c>.");
+        }); _jaKeyBind.UpRelase.d(function () {
+            console.log("Largou Comando <d>.");
+        }); _jaKeyBind.UpRelase.e(function () {
+            console.log("Largou Comando <e>.");
+        }); _jaKeyBind.UpRelase.f(function () {
+            console.log("Largou Comando <f>.");
+        }); _jaKeyBind.UpRelase.g(function () {
+            console.log("Largou Comando <g>.");
+        }); _jaKeyBind.UpRelase.h(function () {
+            console.log("Largou Comando <h>.");
+        }); _jaKeyBind.UpRelase.i(function () {
+            console.log("Largou Comando <i>.");
+        }); _jaKeyBind.UpRelase.j(function () {
+            console.log("Largou Comando <j>.");
+        }); _jaKeyBind.UpRelase.k(function () {
+            console.log("Largou Comando <k>.");
+        }); _jaKeyBind.UpRelase.l(function () {
+            console.log("Largou Comando <l>.");
+        }); _jaKeyBind.UpRelase.m(function () {
+            console.log("Largou Comando <m>.");
+        }); _jaKeyBind.UpRelase.n(function () {
+            console.log("Largou Comando <n>.");
+        }); _jaKeyBind.UpRelase.o(function () {
+            console.log("Largou Comando <o>.");
+        }); _jaKeyBind.UpRelase.p(function () {
+            console.log("Largou Comando <p>.");
+        }); _jaKeyBind.UpRelase.q(function () {
+            console.log("Largou Comando <q>.");
+        }); _jaKeyBind.UpRelase.r(function () {
+            console.log("Largou Comando <r>.");
+        }); _jaKeyBind.UpRelase.s(function () {
+            console.log("Largou Comando <s>.");
+        }); _jaKeyBind.UpRelase.t(function () {
+            console.log("Largou Comando <t>.");
+        }); _jaKeyBind.UpRelase.u(function () {
+            console.log("Largou Comando <u>.");
+        }); _jaKeyBind.UpRelase.v(function () {
+            console.log("Largou Comando <v>.");
+        }); _jaKeyBind.UpRelase.w(function () {
+            console.log("Largou Comando <w>.");
+        }); _jaKeyBind.UpRelase.x(function () {
+            console.log("Largou Comando <x>.");
+        }); _jaKeyBind.UpRelase.y(function () {
+            console.log("Largou Comando <y>.");
+        }); _jaKeyBind.UpRelase.z(function () {
+            console.log("Largou Comando <z>.");
+        });
+    
+        _jaKeyBind.UpRelase.num0(function () {
+            console.log("Largou Comando <0>.");
+        });
+    
+        _jaKeyBind.UpRelase.num1(function () {
+            console.log("Largou Comando <1>.");
+        });
+        _jaKeyBind.UpRelase.num2(function () {
+            console.log("Largou Comando <2>.");
+        });
+        _jaKeyBind.UpRelase.num3(function () {
+            console.log("Largou Comando <3>.");
+        });
+        _jaKeyBind.UpRelase.num4(function () {
+            console.log("Largou Comando <4>.");
+        });
+        _jaKeyBind.UpRelase.num5(function () {
+            console.log("Largou Comando <5>.");
+        });
+        _jaKeyBind.UpRelase.num6(function () {
+            console.log("Largou Comando <6>.");
+        });
+        _jaKeyBind.UpRelase.num7(function () {
+            console.log("Largou Comando <7>.");
+        });
+        _jaKeyBind.UpRelase.num8(function () {
+            console.log("Largou Comando <8>.");
+        });
+        _jaKeyBind.UpRelase.num9(function () {
+            console.log("Largou Comando <9>.");
+        });
+    
+        
+        _jaKeyBind.UpRelase.fire.num1(function () {
+            console.log("Largou Comando <fire 1>.");
+        });
+    
+        _jaKeyBind.UpRelase.enter(function () {
+            console.log("Largou Comando <enter>.");
+        });
+        _jaKeyBind.UpRelase.jump(function () {
+            console.log("Largou Comando <space>.");
+        });
+    
+    
+    
+    
+
+
+
+    });
+
+</script>
+
+<script>
+    //_jaAfterLoadFuncs(function () { console.log('esta é uma funcao After Load'); });
+    //_jaStart(function () { console.log('esta é uma funcao Start'); });
+    //_jaAwake(function () { console.log('esta é uma funcao awake'); });
+    //_jaUpdate(function () { console.log('esta é uma funcao Update acontece a cada refresh time do browser'); })
+    //_jaFixedUpdate(function () { console.log('esta é uma funcao FixedUpdate acontece a cada 20ms se voce tiver processador pra isso'); })
+
+    _jaAfterLoadFuncs(function () {
+        var speed = 5;
+        _jaKeyBind.Down.move.right(function () {
+            _jaMoveLeftForward("#keysEl", speed);
+        });
+        _jaKeyBind.Down.move.left(function () {
+            _jaMoveLeftBackward("#keysEl", speed);
+        });
+        _jaKeyBind.Down.move.up(function () {
+            _jaMoveTopUpward("#keysEl", speed);
+        });
+        _jaKeyBind.Down.move.down(function () {
+            _jaMoveTopDownward("#keysEl", speed);
+        });
+        
+
+    });
+
+
+
+</script>
+
+

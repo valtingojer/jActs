@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Development Tests</title>
+    <script src="../Dist/jActs.js"></script>
+</head>
+<style></style>
+
+<body style="display: grid; place-items: center; place-content: center;">
+    
+    <div class="fps-display">
+        <div class="inner-display" style="top: 0px"><h1>Seconds: <span id="label_secondcount"></span></h1></div>
+        <div class="inner-display" style="top: 45px"><h1>FPS: <span id="label_fps"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>scrollbar hor: <span id="scrollbarHor"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>scrollbar ver: <span id="scrollbarVer"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>window bottom to doc top: <span id="winbottodoctop"></span></h1></div>
+
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>rect X <span id="rectX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>rect X <span id="rectY"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>Win X <span id="winX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Win Y <span id="winY"></span></h1></div>
+
+        <div class="inner-display" style="top: 90px"><h1>screen X <span id="screenX"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>screen Y <span id="screenY"></span></h1></div>
+
+         
+
+        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptotop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Top to Document Top: <span id="toptobot"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>DocSize: <span id="docsizeY"></span></h1></div>
+
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>Doc to window top: <span id="doctowtop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Doc to window bot: <span id="doctowbot"></span></h1></div>
+        <br />
+        <div class="inner-display" style="top: 90px"><h1>Doc top to window top: <span id="doctoptowtop"></span></h1></div>
+        <div class="inner-display" style="top: 90px"><h1>Doc top top: <span id="doctoptotop"></span></h1></div>
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>X: <span id="wx"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>Y: <span id="wy"></span></h1></div>
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>Middle X: <span id="midx"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>Middle Y: <span id="midy"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Top: <span id="label_ftlt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft bottom: <span id="label_ftlb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Left: <span id="label_ftll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopLeft Right: <span id="label_ftlr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Top: <span id="label_ftrt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight bottom: <span id="label_ftrb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Left: <span id="label_ftrl"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedTopRight Right: <span id="label_ftrr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Top: <span id="label_bllt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft bottom: <span id="label_bllb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Left: <span id="label_blll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>fixedBottomLeft Right: <span id="label_bllr"></span></h1></div>
+
+    <br />
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Top: <span id="label_brlt"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight bottom: <span id="label_brlb"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Left: <span id="label_brll"></span></h1></div>
+    <div class="inner-display" style="top: 90px"><h1>FixedBottomRight Right: <span id="label_brlr"></span></h1></div>
+    -->
+    </div>
+
+
+    <div id="teste0" class="el_30x30"></div><br />
+    <div id="teste1" class="el_30x30 um"></div><br />
+    <div id="teste2" class="el_30x30 dois"></div><br />
+    <div id="teste3" class="el_30x30 tres"></div><br />
+
+    <div id="teste4" class="el_30x30"></div><br />
+    <div id="teste5" class="el_30x30"></div><br />
+    <div id="teste6" class="el_30x30"></div><br />
+    <div id="teste7" class="el_30x30"></div><br />
+
+    <div id="teste8" class="el_30x30"></div><br />
+    <div id="teste9" class="el_30x30"></div><br />
+    <div id="teste10" class="el_30x30"></div><br />
+    <div id="teste11" class="el_30x30"></div><br />
+
+    <div id="teste12" class="el_30x30"></div><br />
+    <div id="teste13" class="el_30x30"></div><br />
+    <div id="teste14" class="el_30x30"></div><br />
+    <div id="teste15" class="el_30x30"></div><br />
+
+    <div id="teste16" class="el_30x30"></div><br />
+    <div id="teste17" class="el_30x30"></div><br />
+    <div id="teste18" class="el_30x30"></div><br />
+</body>
+</html>
+<style>
+</style>
+<script>
+    var limit = 50, index = 0;
+    _jaUpdate(function () {
+        if (index < limit) {
+            _jaMoveLeftForward(".el_30x30 um", 4);
+            _jaMoveLeftForward(".el_30x30 dois", 2);
+            _jaMoveLeftForward(".el_30x30 tres", 1);
+            _jaMoveLeftForward("#teste0", 8);
+
+            _jaMoveTopUpward("#teste4", 5); _jaMoveLeftBackward("#teste4", 8);
+            _jaMoveTopUpward("#teste5", 4); _jaMoveLeftBackward("#teste5", 4);
+            _jaMoveTopUpward("#teste6", 3); _jaMoveLeftBackward("#teste6", 2);
+            _jaMoveTopUpward("#teste7", 2); _jaMoveLeftBackward("#teste7", 1);
+
+
+            _jaMoveTopDownward("#teste8", 2); _jaMoveLeftForward("#teste8", 8);
+            _jaMoveTopDownward("#teste9", 3); _jaMoveLeftForward("#teste9", 7);
+            _jaMoveTopDownward("#teste10", 4); _jaMoveLeftForward("#teste10", 5);
+            _jaMoveTopDownward("#teste11", 5); _jaMoveLeftForward("#teste11", 3);
+
+
+            _jaMoveLeftBackward("#teste12", 1);
+            _jaMoveLeftBackward("#teste13", 2);
+            _jaMoveLeftBackward("#teste14", 4);
+            _jaMoveLeftBackward("#teste15", 8);
+
+
+            index++;
+        } else {
+            _jaMoveLeftBackward(".el_30x30 um", 4);
+            _jaMoveLeftBackward(".el_30x30 dois", 2);
+            _jaMoveLeftBackward(".el_30x30 tres", 1);
+            _jaMoveLeftBackward("#teste0", 8);
+
+            _jaMoveTopDownward("#teste4", 5); _jaMoveLeftForward("#teste4", 8);
+            _jaMoveTopDownward("#teste5", 4); _jaMoveLeftForward("#teste5", 4);
+            _jaMoveTopDownward("#teste6", 3); _jaMoveLeftForward("#teste6", 2);
+            _jaMoveTopDownward("#teste7", 2); _jaMoveLeftForward("#teste7", 1);
+
+
+            _jaMoveTopUpward("#teste8", 2); _jaMoveLeftBackward("#teste8", 8);
+            _jaMoveTopUpward("#teste9", 3); _jaMoveLeftBackward("#teste9", 7);
+            _jaMoveTopUpward("#teste10", 4); _jaMoveLeftBackward("#teste10", 5);
+            _jaMoveTopUpward("#teste11", 5); _jaMoveLeftBackward("#teste11", 3);
+
+
+            _jaMoveLeftForward("#teste12", 1);
+            _jaMoveLeftForward("#teste13", 2);
+            _jaMoveLeftForward("#teste14", 4);
+            _jaMoveLeftForward("#teste15", 8);
+
+            index++;
+        }
+
+    })
+    _jaUpdate(function () { if (index >= 100) { index = 0; } });
+</script>
+
+<script>
+
+    _jaUpdate(function () {
+
+        //document.getElementById("label_secondcount").innerText = _jaTime.SecondCount;
+        //document.getElementById("label_fps").innerText = _jaFrame.fps;
+        //document.getElementById("label_deltatime").innerText = _jaTime.DeltaTime;
+
+        document.getElementById("scrollbarVer").innerText = _jaWindow.scroll.vertical.exist() + " " + _jaWindow.scroll.vertical.width();
+        document.getElementById("scrollbarHor").innerText = _jaWindow.scroll.horizontal.exist() + " " + _jaWindow.scroll.horizontal.height();
+
+
+
+        document.getElementById("winbottodoctop").innerText = _jaWindow.offset.bottom.toDocumentTop();
+        document.getElementById("rectX").innerText = _jaWindow.rect.size.x();
+        document.getElementById("rectY").innerText = _jaWindow.rect.size.y();
+
+        document.getElementById("winX").innerText = _jaWindow.size.x();
+        document.getElementById("winY").innerText = _jaWindow.size.y();
+
+        document.getElementById("screenX").innerText = _jaWindow.screenRect.size.x();
+        document.getElementById("screenY").innerText = _jaWindow.screenRect.size.y();
+
+
+        document.getElementById("toptotop").innerText = _jaWindow.offset.top.toDocumentTop();
+        document.getElementById("toptobot").innerText = _jaWindow.offset.top.toDocumentBottom();
+
+        document.getElementById("docsizeY").innerText = _jaDocument.size.y();
+
+        document.getElementById("doctowtop").innerText = _jaDocument.offset.bottom.toWindowTop();
+        document.getElementById("doctowbot").innerText = _jaDocument.offset.bottom.toWindowBottom();
+
+
+        document.getElementById("doctoptowtop").innerText = _jaDocument.offset.top.toWindowTop();
+        document.getElementById("doctoptotop").innerText = _jaDocument.position.top();
+
+        document.getElementById("wx").innerText = _jaWindow.size.xpx();
+        document.getElementById("wy").innerText = _jaWindow.size.ypx();
+
+        document.getElementById("midx").innerText = _jaWindow.middle.x();
+        document.getElementById("midy").innerText = _jaWindow.middle.y();
+
+        document.getElementById("label_ftlt").innerText = _jaWindow.element.topLeft.position.top();
+        document.getElementById("label_ftlb").innerText = _jaWindow.element.topLeft.position.bottom();
+        document.getElementById("label_ftll").innerText = _jaWindow.element.topLeft.position.left();
+        document.getElementById("label_ftlr").innerText = _jaWindow.element.topLeft.position.right();
+
+        document.getElementById("label_ftrt").innerText = _jaWindow.element.topRight.position.top();
+        document.getElementById("label_ftrb").innerText = _jaWindow.element.topRight.position.bottom();
+        document.getElementById("label_ftrl").innerText = _jaWindow.element.topRight.position.left();
+        document.getElementById("label_ftrr").innerText = _jaWindow.element.topRight.position.right();
+
+        document.getElementById("label_bllt").innerText = _jaWindow.element.bottomLeft.position.top();
+        document.getElementById("label_bllb").innerText = _jaWindow.element.bottomLeft.position.bottom();
+        document.getElementById("label_blll").innerText = _jaWindow.element.bottomLeft.position.left();
+        document.getElementById("label_bllr").innerText = _jaWindow.element.bottomLeft.position.right();
+
+        document.getElementById("label_brlt").innerText = _jaWindow.element.bottomRight.position.top();
+        document.getElementById("label_brlb").innerText = _jaWindow.element.bottomRight.position.bottom();
+        document.getElementById("label_brll").innerText = _jaWindow.element.bottomRight.position.left();
+        document.getElementById("label_brlr").innerText = _jaWindow.element.bottomRight.position.right();
+
+        document.getElementById("teste17").style.position = "absolute";
+        document.getElementById("teste17").style.top = _jaWindow.element.bottomRight.position.top() + "px";
+
+
+    });
+
+
+
+</script>

@@ -83,6 +83,7 @@
     <Content Include="Dist\Framework\js\helpers\movements.js" />
     <Content Include="Dist\Framework\js\helpers\window.js" />
     <Content Include="Dist\Framework\js\jActs.js" />
+    <Content Include="Dist\Framework\js\keys\bind.js" />
     <Content Include="Dist\Framework\js\move\leftAxis.js" />
     <Content Include="Dist\Framework\js\move\topAxis.js" />
     <Content Include="Dist\Framework\js\vars\generic.js" />
@@ -91,6 +92,8 @@
     <Content Include="Dist\Framework\js\vars\commum\time.js" />
     <Content Include="Dist\Framework\js\vars\commum\window.js" />
     <Content Include="Dist\jActs.js" />
+    <Content Include="html\FullDisplay.html" />
+    <Content Include="html\Keys.html" />
     <Content Include="html\registerModel.html" />
     <Content Include="html\index.html" />
     <Content Include="Web.config" />
