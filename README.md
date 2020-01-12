@@ -83,13 +83,13 @@ _jaAwake, _jaStart, _jaUpdate, _jaFixedUpdate, _jaAfterLoadFuncs
 exemple of bindin key Down and key Up with an event
 #
 _jaAfterLoadFuncs(function () {  
-	_jaKeyBind.Down.a(function () {  
-		console.log("key <a> has being pressed.");  
-		//Do your stuff when the key a is pressed  
-	});  
-	_jaKeyBind.UpRelase.a(function () {  
-		console.log("Key <a> was released.");  
-		//Do your stuff when the key a is released  
-	});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	_jaKeyBind.Down.a(function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		console.log("key <a> has being pressed.");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		//Do your stuff when the key a is pressed  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	_jaKeyBind.UpRelase.a(function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		console.log("Key <a> was released.");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		//Do your stuff when the key a is released  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	});  
 });  
 #
