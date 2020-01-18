@@ -62,5 +62,31 @@ _jaAfterLoad(function () {
         _jaKeyBind.Down.move.left(moveLeft);
         _jaKeyBind.Down.move.up(moveUp);
         _jaKeyBind.Down.move.down(moveDown);
+
+
+        _jaKeyBind.Down.space(function () {
+            _ja('#keydown').innerText = "Space Pressed";
+        });
+        _jaKeyBind.UpRelase.space(function () {
+            _ja('#keydown').innerText = "";
+        });
+
+
+
+
+        _jaKeyBind.Down.space(function () {
+            let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 5); }); };
+            _jaInstantiate(_ja('#bullet'), null, null, null, null, vaiQueGo);
+        });
+
+
+
+
+
+
+
+
+
+
     }
 });

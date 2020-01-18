@@ -78,7 +78,6 @@
     <Content Include="Dist\Framework\js\beta\tests.js" />
     <Content Include="Dist\Framework\js\constants\about.js" />
     <Content Include="Dist\Framework\js\constants\generic.js" />
-    <Content Include="Dist\Framework\js\helpers\classAndId.js" />
     <Content Include="Dist\Framework\js\helpers\math.js" />
     <Content Include="Dist\Framework\js\helpers\movements.js" />
     <Content Include="Dist\Framework\js\helpers\window.js" />
@@ -87,7 +86,7 @@
     <Content Include="Dist\Framework\js\move\leftAxis.js" />
     <Content Include="Dist\Framework\js\move\topAxis.js" />
     <Content Include="Dist\Framework\js\objects\create.js" />
-    <Content Include="Dist\Framework\js\objects\find.js" />
+    <Content Include="Dist\Framework\js\objects\info.js" />
     <Content Include="Dist\Framework\js\vars\generic.js" />
     <Content Include="Dist\Framework\js\vars\commum\document.js" />
     <Content Include="Dist\Framework\js\vars\commum\frame.js" />

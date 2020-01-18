@@ -43,6 +43,7 @@ var _jActs_src = {
         "vars/generic",
 
         "objects/create",
+        "objects/info",
 
         "animate/event",
 
