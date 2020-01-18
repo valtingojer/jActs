@@ -1,5 +1,5 @@
 ﻿
-var _jActsMovementsHelper = function (origin, direction, elCode, factor) {
+var _jActsMovementsHelper = function (origin, direction, ele, factor) {
     this.getCalcBasedOnDirection = function (position) {
         switch (direction) {
             case "forward": return position + factor;
@@ -25,43 +25,19 @@ var _jActsMovementsHelper = function (origin, direction, elCode, factor) {
         var increaseValue = getCalcBasedOnDirection(parseInt(pxValue));
         changeStyle(el, increaseValue.toString() + "px");
     }
-    this.makeClassMove = function (className) {
-        var els = document.getElementsByClassName(className);
 
-        if (els.length > 0) {
-            for (var i = 0; i < els.length; i++) {
-                makeMove(els[i]);
+    let gottenElement = _jActs_GetElement(ele);
+    if (!gottenElement) {
+        return false;
+    } else {
+        if (gottenElement.length > 0) {
+            for (var i = 0; i < gottenElement.length; i++) {
+                makeMove(gottenElement[i]);
             }
+        } else {
+            makeMove(gottenElement);
         }
-    };
-    this.makeIdMove = function (idName) {
-        var el = document.getElementById(idName);
-
-        if (!_jaIsNullEmptyOrUndefined(el)) {
-            makeMove(el);
-        }
-
-    };
-
-    var codes = _jActsClassAndIdHelper("TranslateClassAndId", elCode);
-
-    if (codes.length > 0) {
-        for (var code = 0; code < codes.length; code++) {
-            switch (code) {
-                case 0:
-                    codes[code].forEach(function (elVal) {
-                        makeIdMove(elVal);
-                    });
-                    break;
-                case 1:
-                    codes[code].forEach(function (elVal) {
-                        makeClassMove(elVal);
-                    });
-                    break;
-                default:
-                    break;
-            }
-        }
+        
     }
-
+    
 };

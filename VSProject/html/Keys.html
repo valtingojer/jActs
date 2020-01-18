@@ -23,7 +23,7 @@
 </style>
 <script>
 
-    _jaAfterLoadFuncs(function () {
+    _jaAfterLoad(function () {
         
         _jaKeyBind.Down.a(function () {
             console.log("Comando <a>.");
@@ -130,7 +130,7 @@
 
     });
 
-    _jaAfterLoadFuncs(function () {
+    _jaAfterLoad(function () {
         
     
         _jaKeyBind.UpRelase.a(function () {
@@ -243,13 +243,13 @@
 </script>
 
 <script>
-    //_jaAfterLoadFuncs(function () { console.log('esta é uma funcao After Load'); });
+    //_jaAfterLoad(function () { console.log('esta é uma funcao After Load'); });
     //_jaStart(function () { console.log('esta é uma funcao Start'); });
     //_jaAwake(function () { console.log('esta é uma funcao awake'); });
     //_jaUpdate(function () { console.log('esta é uma funcao Update acontece a cada refresh time do browser'); })
     //_jaFixedUpdate(function () { console.log('esta é uma funcao FixedUpdate acontece a cada 20ms se voce tiver processador pra isso'); })
 
-    _jaAfterLoadFuncs(function () {
+    _jaAfterLoad(function () {
         var speed = 5;
         _jaKeyBind.Down.move.right(function () {
             _jaMoveLeftForward("#keysEl", speed);

@@ -18,6 +18,19 @@
 
     <div id="moveLoop" class="el_30x30"></div><br />
     <div id="keyControlled" class="el_30x30"></div><br />
+
+    <div class="uma">
+        class uma
+        <div class="duas">
+            duas
+            <k class="tres">
+                tres 1
+            </k>
+            <k class="tres">
+                tres 2
+            </k>
+        </div>
+    </div>
 </body>
 </html>
 <style>
@@ -27,14 +40,46 @@
 </script>
 
 <script>
-    //_jaAfterLoadFuncs(function () { console.log('esta é uma funcao After Load'); });
+    //_jaAfterLoad(function () { console.log('esta é uma funcao After Load'); });
     //_jaStart(function () { console.log('esta é uma funcao Start'); });
     //_jaAwake(function () { console.log('esta é uma funcao awake'); });
     //_jaUpdate(function () { console.log('esta é uma funcao Update acontece a cada refresh time do browser'); })
     //_jaFixedUpdate(function () { console.log('esta é uma funcao FixedUpdate acontece a cada 20ms se voce tiver processador pra isso'); })
 
+    _jaAfterLoad(
+        function () {
+
+            //_jActs_GetElement('.uma').style.color = "blue";
+            //_jActs_GetElement('div.duas').style.color = "red";
+            //_jActs_GetElement('div k').forEach(function (e) {
+            //    e.style.color = "yellow";
+            //});
+
+            _ja('.uma').style.color = "blue";
+             _ja('.uma').style.color = "blue";
+            _ja('div.duas').style.color = "red";
+            _ja('div k').forEach(function (e) {
+                e.style.color = "yellow";
+            });
+
+        }
+    );
+
+    _jaUpdate(function () {
+
+        if (_jaTime.SecondCount % 3 == 0) {
+            var colorNumber = '';
+            for (var i = 0; i < 6; i++) {
+                colorNumber = colorNumber.toString() + _jaMath.RandomRange(1, 9);
+            }
+            if (_ja('.uma')) {
+                _ja('.uma').style.color = "#" + colorNumber;
+            }
+        }
+
+        
+
+    });
     
-
-
 
 </script>

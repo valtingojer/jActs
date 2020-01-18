@@ -86,6 +86,8 @@
     <Content Include="Dist\Framework\js\keys\bind.js" />
     <Content Include="Dist\Framework\js\move\leftAxis.js" />
     <Content Include="Dist\Framework\js\move\topAxis.js" />
+    <Content Include="Dist\Framework\js\objects\create.js" />
+    <Content Include="Dist\Framework\js\objects\find.js" />
     <Content Include="Dist\Framework\js\vars\generic.js" />
     <Content Include="Dist\Framework\js\vars\commum\document.js" />
     <Content Include="Dist\Framework\js\vars\commum\frame.js" />

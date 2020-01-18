@@ -9,16 +9,21 @@ _jaUpdate(function () {
 
 
 var moveloopvars = {
-    speed: 5,
+    speed: 1,
     endPoint: 0,
     position: 0,
     moveLeft: true,
 };
 
 _jaUpdate(function () {
-    let moveLoopEl = document.getElementById('moveLoop');
+    let moveLoopEl = _ja('#moveLoop');
     if (!_jaIsNullEmptyOrUndefined(moveLoopEl)) {
-
+		
+		let currentSpeed = moveloopvars.speed;
+		currentSpeed += _jaTime.SecondCount;
+        currentSpeed *= 0.01;
+        currentSpeed = currentSpeed._jaClamp(1, 10);
+		
         moveloopvars.endPoint = _jaWindow.element.topRight.position.left();
         moveloopvars.position = moveLoopEl.getBoundingClientRect().left;
 
@@ -31,23 +36,25 @@ _jaUpdate(function () {
         }
 
         if (moveloopvars.moveLeft) {
-            _jaMoveLeftForward('#moveLoop', (moveloopvars.speed + _jaTime.SecondCount) );
+            _jaMoveLeftForward(moveLoopEl, currentSpeed );
         } else {
-            _jaMoveLeftBackward('#moveLoop', (moveloopvars.speed + _jaTime.SecondCount) );
+            _jaMoveLeftBackward(moveLoopEl, currentSpeed );
         }
         
     }
 });
 
-_jaAfterLoadFuncs(function () {
+_jaAfterLoad(function () {
     let keyboardTestEl = document.getElementById('keyControlled');
     if (!_jaIsNullEmptyOrUndefined(keyboardTestEl)) {
         let speed = 5;
 
-        var moveLeft = function() {  _jaMoveLeftBackward("#keyControlled", speed);   }
-        var moveRigth = function(){  _jaMoveLeftForward("#keyControlled", speed);    }
-        var moveUp = function()   {  _jaMoveTopUpward("#keyControlled", speed);      }
-        var moveDown = function() {  _jaMoveTopDownward("#keyControlled", speed);    }
+        let el = _ja('#keyControlled');
+
+        var moveLeft = function () { _jaMoveLeftBackward(el, speed);   }
+        var moveRigth = function () { _jaMoveLeftForward(el, speed);    }
+        var moveUp = function () { _jaMoveTopUpward(el, speed);      }
+        var moveDown = function () { _jaMoveTopDownward(el, speed);    }
 
         _jaKeyBind.Down.q(function(){   moveLeft(); moveUp(); });
         _jaKeyBind.Down.e(function(){   moveRigth(); moveUp(); });
