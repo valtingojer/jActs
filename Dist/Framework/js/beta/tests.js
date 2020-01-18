@@ -43,17 +43,17 @@ _jaAfterLoadFuncs(function () {
     let keyboardTestEl = document.getElementById('keyControlled');
     if (!_jaIsNullEmptyOrUndefined(keyboardTestEl)) {
         let speed = 5;
-        _jaKeyBind.Down.move.right(function () {
-            _jaMoveLeftForward("#keyControlled", speed);
-        });
-        _jaKeyBind.Down.move.left(function () {
-            _jaMoveLeftBackward("#keyControlled", speed);
-        });
-        _jaKeyBind.Down.move.up(function () {
-            _jaMoveTopUpward("#keyControlled", speed);
-        });
-        _jaKeyBind.Down.move.down(function () {
-            _jaMoveTopDownward("#keyControlled", speed);
-        });
+
+        var moveLeft = function() {  _jaMoveLeftBackward("#keyControlled", speed);   }
+        var moveRigth = function(){  _jaMoveLeftForward("#keyControlled", speed);    }
+        var moveUp = function()   {  _jaMoveTopUpward("#keyControlled", speed);      }
+        var moveDown = function() {  _jaMoveTopDownward("#keyControlled", speed);    }
+
+        _jaKeyBind.Down.q(function(){   moveLeft(); moveUp(); });
+        _jaKeyBind.Down.e(function(){   moveRigth(); moveUp(); });
+        _jaKeyBind.Down.move.right(moveRigth);
+        _jaKeyBind.Down.move.left(moveLeft);
+        _jaKeyBind.Down.move.up(moveUp);
+        _jaKeyBind.Down.move.down(moveDown);
     }
 });

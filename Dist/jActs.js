@@ -56,8 +56,8 @@ var _jActs_src = {
 var _jActs_ErrorLoad = {
     headTimeout: function () { return console.log("Could not load jActs Framework, tag Head not found."); },
     sourceError: function () { return console.log("Could not load jActs Framework, script tag src with file jActs.js not found"); },
-    scriptsError: function (script = "") { return console.log("Could not load jActs Framework, script " + script + " error "); },
-    cssError: function (css = "") { return console.log("Could not load jActs Framework, css " + css + " error "); },
+    scriptsError: function (script) { return console.log("Could not load jActs Framework, script " + ((_jaIsNullEmptyOrUndefined(script)) ? '' : script) + " error "); },
+    cssError: function (css) { return console.log("Could not load jActs Framework, css " + ((_jaIsNullEmptyOrUndefined(css)) ? '' : css) + " error "); },
 }
 var _jActs_InitHelper = {
     setAsStarting: function () {    _jActs_Start_Count.canTryAgain = false; },
@@ -158,6 +158,12 @@ var _jActs_tryToStart = function () {
 
 
 
+/*+++++++++++++++++++++++++++++++++++++++*/
+/*Variable needed to start*/
+/*+++++++++++++++++++++++++++++++++++++++*/
+
+const _jaStartTime = new Date();
+
 
 
 /*+++++++++++++++++++++++++++++++++++++++*/
@@ -189,19 +195,24 @@ var _jActs_Execution = {
 var _jaDoTheAction = function (action) {
     switch (action) {
         case "Awake":
-            _jActs_Execution._AwakeFuncs.forEach(chieldFunc => chieldFunc());
+            //_jActs_Execution._AwakeFuncs.forEach(chieldFunc => chieldFunc());
+            _jActs_Execution._AwakeFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
             break;
         case "Start":
-            _jActs_Execution._StartFuncs.forEach(chieldFunc => chieldFunc());
+            //_jActs_Execution._StartFuncs.forEach(chieldFunc => chieldFunc());
+            _jActs_Execution._StartFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
             break;
         case "Update":
-            _jActs_Execution._UpdateFuncs.forEach(chieldFunc => chieldFunc());
+            //_jActs_Execution._UpdateFuncs.forEach(chieldFunc => chieldFunc());
+            _jActs_Execution._UpdateFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
             break;
         case "FixedUpdate":
-            _jActs_Execution._FixedUpdateFuncs.forEach(chieldFunc => chieldFunc());
+            //_jActs_Execution._FixedUpdateFuncs.forEach(chieldFunc => chieldFunc());
+            _jActs_Execution._FixedUpdateFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
             break;
         case "AfterLoad":
-            _jActs_Execution._AfterLoadFuncs.forEach(chieldFunc => chieldFunc());
+            //_jActs_Execution._AfterLoadFuncs.forEach(chieldFunc => chieldFunc());
+            _jActs_Execution._AfterLoadFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
             break;
         default:
             //default action
