@@ -1,4 +1,17 @@
-﻿var _jaInstantiate = function (object, position, rotation, relativeToScreen, customId, afterCreation) {
+﻿/**
+ * Description. 
+   Instantiate create a copy of an object in a especific position
+   it have options to especify the rotation, relativeness, id, afterInstantiateFunction
+   
+   _jaUpdate( function(){
+        //your code in here
+   } );
+  
+ * 
+ * @param {function} func
+ * 
+ */
+var _jaInstantiate = function (object, position, rotation, relativeTo, customId, afterInstantiateFunc) {
     //TODO DO - IMPLEMENT ROTATION AND RELATIVE TO OBJECT
 
     var obj = {
@@ -13,7 +26,7 @@
 
     document.body.append(newObj);
     
-    if (!_jaIsNullEmptyOrUndefined(afterCreation) && _jaIsFunction(afterCreation)) {
-        return afterCreation(newObj);
+    if (!_jaIsNullEmptyOrUndefined(afterInstantiateFunc) && _jaIsFunction(afterInstantiateFunc)) {
+        return afterInstantiateFunc(newObj);
     }
 };

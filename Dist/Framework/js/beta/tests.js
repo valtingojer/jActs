@@ -2,7 +2,7 @@
 
 _jaUpdate(function () {
 
-    document.getElementById("label_secondcount").innerText = _jaTime.SecondCount;
+    document.getElementById("label_secondcount").innerText = _jaTime.secondCount;
     document.getElementById("label_fps").innerText = _jaFrame.fps;
     document.getElementById("label_deltatime").innerText = _jaTime.DeltaTime;
 });
@@ -20,7 +20,7 @@ _jaUpdate(function () {
     if (!_jaIsNullEmptyOrUndefined(moveLoopEl)) {
 		
 		let currentSpeed = moveloopvars.speed;
-		currentSpeed += _jaTime.SecondCount;
+		currentSpeed += _jaTime.secondCount;
         currentSpeed *= 0.01;
         currentSpeed = currentSpeed._jaClamp(1, 10);
 		
@@ -73,10 +73,13 @@ _jaAfterLoad(function () {
 
 
 
-
+        var myShootsCoolDown = 0;
         _jaKeyBind.Down.space(function () {
-            let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 5); }); };
-            _jaInstantiate(_ja('#bullet'), null, null, null, null, vaiQueGo);
+            if (myShootsCoolDown < _jaTime.quartSecondCount) {
+                myShootsCoolDown = _jaTime.quartSecondCount;
+                let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 5); }); };
+                _jaInstantiate(_ja('#bullet'), null, null, null, null, vaiQueGo);
+            }
         });
 
 
