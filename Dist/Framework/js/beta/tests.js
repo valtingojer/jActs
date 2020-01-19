@@ -75,10 +75,19 @@ _jaAfterLoad(function () {
 
         var myShootsCoolDown = 0;
         _jaKeyBind.Down.space(function () {
+
+            _ja('#keyControlled')._jaRotation();
+
             if (myShootsCoolDown < _jaTime.quartSecondCount) {
                 myShootsCoolDown = _jaTime.quartSecondCount;
-                let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 5); }); };
-                _jaInstantiate(_ja('#bullet'), null, null, null, null, vaiQueGo);
+                let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 8); }); };
+                _jaInstantiate(
+                    _ja('#bullet'),
+                    [5, -30 ],
+                    [0,0,30,30],
+                    _ja('#keyControlled'),
+                    null,
+                    vaiQueGo);
             }
         });
 
