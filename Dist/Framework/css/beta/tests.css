@@ -1,8 +1,8 @@
 ﻿.roundEl {
   background-color: red;
   border: 3px solid yellowgreen;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 30%;
   position: absolute;
 }

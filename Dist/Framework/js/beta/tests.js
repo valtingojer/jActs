@@ -45,14 +45,20 @@ _jaUpdate(function () {
 });
 
 _jaAfterLoad(function () {
-    let keyboardTestEl = document.getElementById('keyControlled');
+    let keyboardTestEl = document.getElementById('player');
     if (!_jaIsNullEmptyOrUndefined(keyboardTestEl)) {
         let speed = 5;
 
-        let el = _ja('#keyControlled');
+        let el = _ja('#player');
 
-        var moveLeft = function () { _jaMoveLeftBackward(el, speed);   }
-        var moveRigth = function () { _jaMoveLeftForward(el, speed);    }
+        var moveLeft = function () {
+            _jaMoveLeftBackward(el, speed);
+            el.style.transform = 'rotate3d(0, 0, 1, -5deg)';
+        };
+        var moveRigth = function () {
+            _jaMoveLeftForward(el, speed);
+            el.style.transform = 'rotate3d(0, 0, 1, 5deg)';
+        }
         var moveUp = function () { _jaMoveTopUpward(el, speed);      }
         var moveDown = function () { _jaMoveTopDownward(el, speed);    }
 
@@ -63,6 +69,8 @@ _jaAfterLoad(function () {
         _jaKeyBind.Down.move.up(moveUp);
         _jaKeyBind.Down.move.down(moveDown);
 
+        _jaKeyBind.UpRelase.move.left(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
+        _jaKeyBind.UpRelase.move.right(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
 
         _jaKeyBind.Down.space(function () {
             _ja('#keydown').innerText = "Space Pressed";
@@ -76,18 +84,25 @@ _jaAfterLoad(function () {
         var myShootsCoolDown = 0;
         _jaKeyBind.Down.space(function () {
 
-            _ja('#keyControlled')._jaRotation();
+            //_ja('#player')._jaRotation();
 
             if (myShootsCoolDown < _jaTime.quartSecondCount) {
                 myShootsCoolDown = _jaTime.quartSecondCount;
                 let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 8); }); };
+
                 _jaInstantiate(
                     _ja('#bullet'),
-                    [5, -30 ],
+                    [_ja('#player')._jaPosition('centerx') -6, _ja('#player')._jaPosition('y') ],
                     [0,0,30,30],
-                    _ja('#keyControlled'),
+                    null,
                     null,
                     vaiQueGo);
+                //_jaInstantiate(
+                //    _ja('#bullet'),
+                //    [-5,-5],
+                //    null,
+                //    _ja('#player'),
+                //    );
             }
         });
 

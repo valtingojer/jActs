@@ -53,6 +53,7 @@ var _jActs_src = {
     ],
     cssFiles: [
         "beta/tests",
+        "gameobjects/spaceship/my-red-spaceship",
     ],
 };
 var _jActs_ErrorLoad = {

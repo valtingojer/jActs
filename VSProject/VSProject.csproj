@@ -73,6 +73,7 @@
     <Content Include="Dist\Framework\css\beta\tests.min.css">
       <DependentUpon>tests.css</DependentUpon>
     </Content>
+    <Content Include="Dist\Framework\css\gameobjects\spaceship\my-red-spaceship.css" />
     <Content Include="Dist\Framework\js\ambient\prepare.js" />
     <Content Include="Dist\Framework\js\animate\event.js" />
     <Content Include="Dist\Framework\js\beta\tests.js" />
@@ -92,6 +93,7 @@
     <Content Include="Dist\Framework\js\vars\commum\frame.js" />
     <Content Include="Dist\Framework\js\vars\commum\time.js" />
     <Content Include="Dist\Framework\js\vars\commum\window.js" />
+    <Content Include="Dist\Framework\js\vars\prototype.js" />
     <Content Include="Dist\jActs.js" />
     <Content Include="html\FullDisplay.html" />
     <Content Include="html\Keys.html" />

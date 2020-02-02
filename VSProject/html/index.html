@@ -8,37 +8,60 @@
 <style></style>
 
 <body style="display: grid; place-items: center; place-content: center;">
-    
+
     <SceneObjects style="display:none">
-        <div id="bullet" class="roundEl"></div>
+        <div id="bullet" class="roundEl layer-bullet"></div>
     </SceneObjects>
 
-    <div style="position: fixed; display:flex; width: 50vw; height: 50vw; place-items: center; place-content: center;">
-        <div id="keydown" style="font-size: 32px"></div>
-    </div>
-
-    <div class="fps-display">
+    <InfoPannel class="fps-display">
         <div class="inner-display" style="top: 0px"><h1>Seconds: <span id="label_secondcount"></span></h1></div>
         <div class="inner-display" style="top: 45px"><h1>FPS: <span id="label_fps"></span></h1></div>
         <div class="inner-display" style="top: 90px"><h1>Delta Time: <span id="label_deltatime"></span></h1></div>
-    </div>
+        <div class="inner-display" style="top: 90px"><h1>pos x y: <span id="label_posxy"></span></h1></div>
+    </InfoPannel>
+
+    <MessageCanvas style="position: fixed; display:flex; width: 50vw; height: 50vw; place-items: center; place-content: center;">
+        <div id="keydown" style="font-size: 32px"></div>
+    </MessageCanvas>
 
 
-    <div id="moveLoop" class="el_30x30"></div><br />
-    <div id="keyControlled" class="el_30x30"></div><br />
 
-    <div class="uma" style="position: absolute; top: 0px;">
-        class uma
-        <div class="duas">
-            duas
-            <k class="tres">
-                tres 1
-            </k>
-            <k class="tres">
-                tres 2
-            </k>
+    <square id="moveLoop" class="el_30x30 layer-wall"></square><br />
+    <square id="move2" class="el_30x30 layer-wall" style="left: 200px"></square><br />
+    <square class="el_30x30 layer-palyer" style="background-color: darkblue"></square><br />
+    <square class="el_30x30 layer-palyer" style="background-color: cyan"></square><br />
+
+    <gameobjects>
+        <div id="player" class='my-red-spaceship-holder'>
+            <div class='spaceship-content'>
+                <div class='wings left'>
+                    <div class="inner"><div class="inner blue"></div></div>
+                </div>
+                <div class='ship-body'>
+                    <div class='exhaust-holder mini'>
+                        <div class='flame red mini'></div>
+                        <div class="flame orange mini"></div>
+                        <div class="flame yellow mini"></div>
+                        <div class="flame white mini"></div>
+                        <div class="circle blue mini"></div>
+                        <div class="circle darkred mini"></div>
+                    </div>
+                </div>
+                <div class='ship-body ship-layer2'>
+                    <div class="ship-upperbody">
+                        <div class="ship-cabin"></div>
+                        <div class="ship-arrow" style="padding: 15%; bottom: 24%"></div>
+                        <div class="ship-arrow" style="bottom: 10%"></div>
+                    </div>
+                </div>
+                <div class='wings right'>
+                    <div class="inner"><div class="inner blue"></div></div>
+                </div>
+            </div>
         </div>
-    </div>
+
+
+    </gameobjects>
 
 
 </body>
@@ -50,66 +73,39 @@
 </script>
 
 <script>
-    //_jaAfterLoad(function () { console.log('esta é uma funcao After Load'); });
-    //_jaStart(function () { console.log('esta é uma funcao Start'); });
-    //_jaAwake(function () { console.log('esta é uma funcao awake'); });
-    //_jaUpdate(function () { console.log('esta é uma funcao Update acontece a cada refresh time do browser'); })
-    //_jaFixedUpdate(function () { console.log('esta é uma funcao FixedUpdate acontece a cada 20ms se voce tiver processador pra isso'); })
-
+    
     _jaAfterLoad(
         function () {
-
-            //_jActs_GetElement('.uma').style.color = "blue";
-            //_jActs_GetElement('div.duas').style.color = "red";
-            //_jActs_GetElement('div k').forEach(function (e) {
-            //    e.style.color = "yellow";
-            //});
-
-
-
-
-            _ja('.uma').style.color = "blue";
-             _ja('.uma').style.color = "blue";
-            _ja('div.duas').style.color = "red";
-            _ja('div k').forEach(function (e) {
-                e.style.color = "yellow";
-            });
-
 
 
         }
     );
     
-    var colorDealy = 0;
+    var delay = 0;
     _jaUpdate(function () {
 
-        if (colorDealy < _jaTime.secondCount) {
-            colorDealy = _jaTime.secondCount;
-            var colorNumber = '';
-            for (var i = 0; i < 6; i++) {
-                colorNumber = (_jaMath.RandomRange(1, 3) <= 2) ? colorNumber.toString() + _jaMath.RandomRange(1, 9) : colorNumber.toString() + _jaMath.RandomLetter(1, 6);
+        _ja('#label_posxy').innerText = _ja('#player')._jaPosition();
+
+        let firstLayerArray = _ja('.layer-wall');
+        let secondLayerArray = _ja('.layer-bullet');
+        
+
+
+        for (var i = 0; i < firstLayerArray.length; i++) {
+            for (var j = 0; j < secondLayerArray.length; j++) {
+                let firstPos = firstLayerArray[i]._jaPosition('vector');
+                let secoPos = secondLayerArray[j]._jaPosition('vector');
+                
+                /*detectar colisão em x*/
+                if (firstPos[1] >= secoPos[0] && firstPos[0] <= secoPos[1]) {
+                    if (firstPos[3] >= secoPos[2] && firstPos[2] <= secoPos[3]) {
+                        console.log('colidindo', firstLayerArray[i].id, secondLayerArray[j].id);
+                        secondLayerArray[j].remove();
+                    }
+                }
+
             }
-            //console.log(colorNumber);
-
-            if (_ja('.uma').length > 0) {
-                _ja('.uma').forEach(function (el) {
-                    el.style.color = "#" + colorNumber
-                });
-            } else {
-                _ja('.uma').style.color = "#" + colorNumber;
-
-            }
-
-            //let moveLoopEl = _ja('#moveLoop');
-            //console.log(moveLoopEl._jaPosition());
-
-            //let keyControlledEdl = _ja('#keyControlled');
-            //console.log(keyControlledEdl._jaPosition());
-
-
-
         }
-
         
     });
 
