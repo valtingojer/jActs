@@ -73,6 +73,15 @@
     <Content Include="Dist\Framework\css\beta\tests.min.css">
       <DependentUpon>tests.css</DependentUpon>
     </Content>
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\asteroid.css" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_1.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_2.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_3.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_4.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_5.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_6.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_7.jpg" />
+    <Content Include="Dist\Framework\css\gameobjects\asteroid\texture\asteroid_texture_8.jpg" />
     <Content Include="Dist\Framework\css\gameobjects\spaceship\my-red-spaceship.css" />
     <Content Include="Dist\Framework\js\ambient\prepare.js" />
     <Content Include="Dist\Framework\js\animate\event.js" />
