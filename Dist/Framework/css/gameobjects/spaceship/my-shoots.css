@@ -1,0 +1,93 @@
+﻿.my-red-spaceship-main-shoot {
+    width: 4px;
+    height: 24px;
+    background-color: rgba(154, 205, 50, 1);
+    -webkit-animation: pulse 0.3s infinite;
+    -moz-animation: pulse 0.3s infinite;
+    -ms-animation: pulse 0.3s infinite;
+    -o-animation: pulse 0.3s infinite;
+    animation: pulse 0.3s infinite;
+}
+
+.my-red-spaceship-secondary-shoot {
+    width: 4px;
+    height: 4px;
+    background-color: rgba(154, 205, 50, 1);
+}
+
+.my-red-spaceship-shoot-buff {
+    background: url(img/plus.png);
+    background-size: 60px;
+    background-position-y: -16px;
+    background-position-x: -18px;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    border: 4px solid;
+    border-color: orangered;
+    /*
+    transform: rotate3d(0, 0, 1, 45deg);
+    */
+    -webkit-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -moz-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -ms-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -o-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    animation: buffRotating 10s linear infinite, pulse 1s infinite;
+}
+
+.my-red-spaceship-shoot-debuff {
+    background: url(img/minus.png);
+    background-size: 20px;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-color: orangered;
+    border: 4px solid;
+    border-color: orange;
+    /*
+    transform: rotate3d(0, 0, 1, 45deg);
+    */
+    -webkit-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -moz-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -ms-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    -o-animation: buffRotating 10s linear infinite, pulse 1s infinite;
+    animation: buffRotating 10s linear infinite, pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);
+        filter: blur(0px);
+    }
+
+    70% {
+        box-shadow: 0 0 0 3px rgb(83, 25, 134);
+        filter: blur(1px);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes buffRotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
