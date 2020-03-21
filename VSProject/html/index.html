@@ -24,7 +24,7 @@
         <div id="keydown" style="font-size: 32px"></div>
     </MessageCanvas>
 
-
+    <div id="move-bg" class="my-space-background" data-py="0"></div>
 
     <square id="moveLoop" class="layer-wall my-simple-asteroid" style="position: relative"></square><br />
     <square id="move2" class="el_30x30 layer-wall" style="left: 200px"></square><br />
@@ -59,8 +59,6 @@
                 </div>
             </div>
         </div>
-
-
     </gameobjects>
 
 
@@ -77,35 +75,25 @@
     _jaAfterLoad(
         function () {
 
-
         }
     );
-    
+
+    _jaUpdate(function () {
+        let factor = 1 + _jaTime.secondCount;
+        let speed = 1;
+        let backgroundY = parseInt(_ja('#move-bg').getAttribute('data-py'));
+        backgroundY = (isNaN(backgroundY)) ? 0 : backgroundY;
+        backgroundY = backgroundY + (factor * speed);
+        _ja('#move-bg').style.backgroundPosition = "0px " + backgroundY +"px";
+        _ja('#move-bg').setAttribute('data-py', backgroundY);
+    });
+
     var delay = 0;
     _jaUpdate(function () {
-
-        _ja('#label_posxy').innerText = _ja('#player')._jaPosition();
-
-        let firstLayerArray = _ja('.layer-wall');
-        let secondLayerArray = _ja('.layer-bullet');
         
+        _jaCollisionDetector('square', ['.layer-wall'], ['.layer-bullet'], function (a, b) { b.remove(); });
+        _jaCollisionDetector('square', ['.layer-wall'], ['#player'], function (a, b) { console.log('damage player') } );
 
-
-        for (var i = 0; i < firstLayerArray.length; i++) {
-            for (var j = 0; j < secondLayerArray.length; j++) {
-                let firstPos = firstLayerArray[i]._jaPosition('vector');
-                let secoPos = secondLayerArray[j]._jaPosition('vector');
-                
-                /*detectar colisão em x*/
-                if (firstPos[1] >= secoPos[0] && firstPos[0] <= secoPos[1]) {
-                    if (firstPos[3] >= secoPos[2] && firstPos[2] <= secoPos[3]) {
-                        console.log('colidindo', firstLayerArray[i].id, secondLayerArray[j].id);
-                        secondLayerArray[j].remove();
-                    }
-                }
-
-            }
-        }
         
     });
 

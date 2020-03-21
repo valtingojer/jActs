@@ -72,12 +72,12 @@ _jaAfterLoad(function () {
         _jaKeyBind.UpRelase.move.left(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
         _jaKeyBind.UpRelase.move.right(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
 
-        _jaKeyBind.Down.space(function () {
-            _ja('#keydown').innerText = "Space Pressed";
-        });
-        _jaKeyBind.UpRelase.space(function () {
-            _ja('#keydown').innerText = "";
-        });
+        //_jaKeyBind.Down.space(function () {
+        //    _ja('#keydown').innerText = "Space Pressed";
+        //});
+        //_jaKeyBind.UpRelase.space(function () {
+        //    _ja('#keydown').innerText = "";
+        //});
 
 
 
@@ -90,19 +90,21 @@ _jaAfterLoad(function () {
                 myShootsCoolDown = _jaTime.quartSecondCount;
                 let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 8); }); };
 
-                _jaInstantiate(
-                    _ja('#bullet'),
-                    [_ja('#player')._jaPosition('centerx') -6, _ja('#player')._jaPosition('y') ],
-                    [0,0,30,30],
-                    null,
-                    null,
-                    vaiQueGo);
                 //_jaInstantiate(
                 //    _ja('#bullet'),
-                //    [-5,-5],
+                //    [_ja('#player')._jaPosition('centerx') -6, _ja('#player')._jaPosition('y') ],
+                //    [0,0,30,30],
                 //    null,
-                //    _ja('#player'),
-                //    );
+                //    null,
+                //    vaiQueGo);
+                _jaInstantiate(
+                    _ja('#bullet'),
+                    [30,-15],
+                    null,
+                    _ja('#player'),
+                    null,
+                    vaiQueGo
+                    );
             }
         });
 

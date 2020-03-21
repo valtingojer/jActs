@@ -23,7 +23,7 @@ var _jActs_src = {
     },
     jsFiles: [
         "ambient/prepare",
-
+        "actions/collision",
         "constants/about", 
         "constants/generic",
 
@@ -53,8 +53,9 @@ var _jActs_src = {
     ],
     cssFiles: [
         "beta/tests",
-        "gameobjects/spaceship/my-red-spaceship",
         "gameobjects/asteroid/asteroid",
+        "gameobjects/space-backgrounds/space-background",
+        "gameobjects/spaceship/my-red-spaceship",
     ],
 };
 var _jActs_ErrorLoad = {
@@ -174,7 +175,7 @@ const _jaStartTime = new Date();
 /*True / False Verifications check*/
 /*+++++++++++++++++++++++++++++++++++++++*/
 var _jaIsNullEmptyOrUndefined = function (somethingToCheck) {
-    return (somethingToCheck == null || somethingToCheck == "" || somethingToCheck == "undefined");
+    return (somethingToCheck == null || somethingToCheck === "" || typeof somethingToCheck === "undefined");
 };
 var _jaIsFunction = function (functionToCheck) {
     return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
