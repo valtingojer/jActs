@@ -1,4 +1,37 @@
-﻿
+﻿var fireSpots = 0;
+var myShootsCoolDown = 0;
+
+var addFireSpot = function (num) {
+    myShootsCoolDown = 0;
+    fireSpots += num;
+}
+var subFireSpot = function (num) {
+    myShootsCoolDown = 0;
+    fireSpots -= num;
+}
+var getFireSpots = function () {
+    fireSpots = fireSpots._jaClamp(-1, 10);
+    return fireSpots;
+}
+var fireCooldown = function () {
+    switch (getFireSpots()) {
+        case 0:
+        case 1:
+        case 2:
+            return _jaTime.secondCount;
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+            return _jaTime.halfSecondCount;
+        case 9:
+        case 10:
+            return _jaTime.quartSecondCount;
+        default: return _jaTime.secondCount;
+    }
+};
+
 
 _jaUpdate(function () {
 
@@ -71,23 +104,13 @@ _jaAfterLoad(function () {
 
         _jaKeyBind.UpRelase.move.left(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
         _jaKeyBind.UpRelase.move.right(function () { el.style.transform = 'rotate3d(0, 0, 1, 0deg)'; });
+        
+        
 
-        //_jaKeyBind.Down.space(function () {
-        //    _ja('#keydown').innerText = "Space Pressed";
-        //});
-        //_jaKeyBind.UpRelase.space(function () {
-        //    _ja('#keydown').innerText = "";
-        //});
-
-
-
-        var myShootsCoolDown = 0;
         _jaKeyBind.Down.space(function () {
 
-            //_ja('#player')._jaRotation();
-
-            if (myShootsCoolDown < _jaTime.quartSecondCount) {
-                myShootsCoolDown = _jaTime.quartSecondCount;
+            if (myShootsCoolDown < fireCooldown()) {
+                myShootsCoolDown = fireCooldown();
                 let vaiQueGo = function (el) { _jaUpdate(function () { _jaMoveTopUpward(el, 8); }); };
 
                 //_jaInstantiate(
@@ -97,14 +120,76 @@ _jaAfterLoad(function () {
                 //    null,
                 //    null,
                 //    vaiQueGo);
-                _jaInstantiate(
-                    _ja('#bullet'),
-                    [30,-15],
-                    null,
-                    _ja('#player'),
-                    null,
-                    vaiQueGo
+
+                this.mainFire = function () {
+                    _jaInstantiate(
+                        _ja('#bullet'),
+                        [38, -25],
+                        null,
+                        _ja('#player'),
+                        null,
+                        vaiQueGo
                     );
+                };
+
+                this.doubleFire = function () {
+                    _jaInstantiate(
+                        _ja('#bullet'),
+                        [52, -15],
+                        null,
+                        _ja('#player'),
+                        null,
+                        vaiQueGo
+                    );
+
+                    _jaInstantiate(
+                        _ja('#bullet'),
+                        [24, -15],
+                        null,
+                        _ja('#player'),
+                        null,
+                        vaiQueGo
+                    );
+                };
+
+                this.extraFire = function () {
+                    _jaInstantiate(
+                        _ja('#bullet-secondary'),
+                        [16, 15],
+                        null,
+                        _ja('#player'),
+                        null,
+                        vaiQueGo
+                    );
+
+                    _jaInstantiate(
+                        _ja('#bullet-secondary'),
+                        [60, 15],
+                        null,
+                        _ja('#player'),
+                        null,
+                        vaiQueGo
+                    );
+                };
+
+                if (getFireSpots() >= 9 && getFireSpots() <= 10) {
+                    mainFire(); doubleFire(); extraFire();
+                } else if (getFireSpots() >= 7 && getFireSpots() <= 8) {
+                    doubleFire();
+                    extraFire();
+                } else if (getFireSpots() >= 5 && getFireSpots() <= 6) {
+                    mainFire(); extraFire();
+                } else if (getFireSpots() >= 3 && getFireSpots() <= 4) {
+                    mainFire(); doubleFire();
+                } else if (getFireSpots() >= 1 && getFireSpots() <= 2) {
+                    doubleFire();
+                } else {
+                    mainFire();
+                }
+                
+                _ja('#sfxShoot').play();
+
+                
             }
         });
 

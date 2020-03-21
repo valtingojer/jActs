@@ -58,6 +58,7 @@ var _jActs_src = {
         "gameobjects/asteroid/asteroid",
         "gameobjects/space-backgrounds/space-background",
         "gameobjects/spaceship/my-red-spaceship",
+        "gameobjects/spaceship/my-shoots",
     ],
 };
 var _jActs_ErrorLoad = {
@@ -201,7 +202,7 @@ var _jaIsFunction = function (functionToCheck) {
 
 var _jaIsObject = function (objectToCheck) {
     if (_jaIsNullEmptyOrUndefined(objectToCheck)) {
-        console.log('! _jaAlert: ' + objectToCheck + ' Not Found');
+        //console.log('! _jaAlert: ' + objectToCheck + ' Not Found');
         return false;
     } else if (typeof objectToCheck === 'object') {
         return true;
@@ -217,7 +218,7 @@ var _jActs_GetElement = function (el) {
         obj = document.querySelectorAll(el);
         switch (obj.length) {
             case 0:
-                console.log('! _jaAlert: ' + el + ' Not Found');
+                //console.log('! _jaAlert: ' + el + ' Not Found');
                 return false;
             case 1: return obj[0];
             default: return obj;
