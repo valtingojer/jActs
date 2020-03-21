@@ -24,6 +24,8 @@ var _jActs_src = {
     jsFiles: [
         "ambient/prepare",
         "actions/collision",
+        "actions/fileInclude",
+
         "constants/about", 
         "constants/generic",
 
@@ -90,15 +92,33 @@ var _jActs_InitHelper = {
         }
         return false;
     },
+
+    appendCss: function (file) {
+        let link = document.createElement('link');
+        let linkSrc = file;
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.setAttribute('href', linkSrc);
+        link.media = 'all';
+        document.head.append(link);
+    },
+    appendJs: function (file) {
+        let script = document.createElement('script');
+        let scriptSrc = file;
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('src', scriptSrc);
+        document.head.append(script);
+    },
+
     loadScripts: function () {
         try {
             for (var i = 0; i < _jActs_src.jsFiles.length; i++) {
-                var script = document.createElement('script');
-                var scriptSrc = _jActs_src.Framework.url.toString() + _jActs_src.Framework.jsFolder + _jActs_src.jsFiles[i].toString() + '.js';
-                //console.log(scriptSrc);
-                script.setAttribute('type', 'text/javascript');
-                script.setAttribute('src', scriptSrc);
-                document.head.append(script);
+                let scriptSrc = _jActs_src.Framework.url.toString(); //framework base url
+                scriptSrc += _jActs_src.Framework.jsFolder; //Javascript main folder
+                scriptSrc += _jActs_src.jsFiles[i].toString(); //Current Script
+                scriptSrc += '.js'; //Extenssion File
+
+                _jActs_InitHelper.appendJs(scriptSrc);
             }
             return true;
         } catch (e) {
@@ -109,14 +129,12 @@ var _jActs_InitHelper = {
     loadCss: function () {
         try {
             for (var i = 0; i < _jActs_src.cssFiles.length; i++) {
-                var link = document.createElement('link');
-                var linkSrc = _jActs_src.Framework.url.toString() + _jActs_src.Framework.cssFolder + _jActs_src.cssFiles[i].toString() + '.css';
-                //console.log(linkSrc);
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.setAttribute('href', linkSrc);
-                link.media = 'all';
-                document.head.append(link);
+                let linkSrc = _jActs_src.Framework.url.toString();
+                linkSrc += _jActs_src.Framework.cssFolder;
+                linkSrc += _jActs_src.cssFiles[i].toString();
+                linkSrc += '.css';
+
+                _jActs_InitHelper.appendCss(linkSrc);
             }
             return true;
         } catch (e) {
@@ -216,6 +234,8 @@ var _jActs_Execution = {
     _UpdateFuncs: [],
     _FixedUpdateFuncs: [],
     _AfterLoadFuncs: [],
+    _IncludeJs: [],
+    _IncludeCss: [],
 };
 
 /*+++++++++++++++++++++++++++++++++++++++*/
@@ -226,31 +246,69 @@ var _jaDoTheAction = function (action) {
     switch (action) {
         case "Awake":
             //_jActs_Execution._AwakeFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._AwakeFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
+            _jActs_Execution._AwakeFuncs.forEach(function (chieldFunc) {
+                try {
+                    chieldFunc();
+                    return true;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            });
             break;
         case "Start":
             //_jActs_Execution._StartFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._StartFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
+            _jActs_Execution._StartFuncs.forEach(function (chieldFunc) {
+                try {
+                    chieldFunc();
+                    return true;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            });
             break;
         case "Update":
             //_jActs_Execution._UpdateFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._UpdateFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
+            _jActs_Execution._UpdateFuncs.forEach(function (chieldFunc) {
+                try {
+                    chieldFunc();
+                    return true;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            });
             break;
         case "FixedUpdate":
             //_jActs_Execution._FixedUpdateFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._FixedUpdateFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
+            _jActs_Execution._FixedUpdateFuncs.forEach(function (chieldFunc) {
+                try {
+                    chieldFunc();
+                    return true;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            });
             break;
         case "AfterLoad":
             //_jActs_Execution._AfterLoadFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._AfterLoadFuncs.forEach(function(chieldFunc){ return chieldFunc(); });
+            _jActs_Execution._AfterLoadFuncs.forEach(function (chieldFunc) {
+                try {
+                    chieldFunc();
+                    return true;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            });
             break;
         default:
             //default action
             break;
     }
 }
-
-
 
 /**
  * Description. 
@@ -350,6 +408,24 @@ var _jaAfterLoad = function (func) {
         _jActs_Execution._AfterLoadFuncs.push(func);
     }
 };
+
+var _include = function (file) {
+    file = file.toString();
+
+    if (!file.includes('.css') || !file.includes('.js')) {
+        throw "At this time, _include suport only javascript (.js) and Stylesheet (.css) files";
+        return false;
+    }
+
+    if (file.includes('.css')) {
+        _jActs_Execution._IncludeCss.push(file);
+    } else if (file.includes('.js')) {
+        _jActs_Execution._IncludeJs.push(file);
+    }
+    return true;
+};
+
+//_IncludeFiles
 /**
  * Description. 
    Select Element(s) by tag, id, class:
@@ -366,6 +442,23 @@ var _jaAfterLoad = function (func) {
  * 
  */
 var _ja = function (el) { return _jActs_GetElement(el); };
+
+//Add resource at awake
+_jaAfterLoad(function () {
+    console.log('try js');
+    _jActs_Execution._IncludeJs.forEach(function (file) {
+        _jActs_InitHelper.appendJs(file);
+    });
+    console.log('append js success');
+});
+
+_jaAfterLoad(function () {
+    console.log('try css');
+    _jActs_Execution._IncludeCss.forEach(function (file) {
+        _jActs_InitHelper.appendCss(file);
+        console.log('append css success');
+    });
+});
 
 /*Add modules at runtime, but not load them*/
 _jActs_tryToStart();

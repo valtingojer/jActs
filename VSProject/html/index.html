@@ -71,7 +71,12 @@
 </script>
 
 <script>
-    
+
+    _jaAwake(function () {
+            _include('html/ttt.css');
+            _include('html/ttt.js');
+    });
+
     _jaAfterLoad(
         function () {
 
@@ -79,8 +84,8 @@
     );
 
     _jaUpdate(function () {
-        let factor = 1 + _jaTime.secondCount;
-        let speed = 1;
+        let factor = 1 + _jaTime.secondCount * 0.01;
+        let speed = 3;
         let backgroundY = parseInt(_ja('#move-bg').getAttribute('data-py'));
         backgroundY = (isNaN(backgroundY)) ? 0 : backgroundY;
         backgroundY = backgroundY + (factor * speed);
