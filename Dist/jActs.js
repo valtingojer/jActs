@@ -23,11 +23,10 @@ var _jActs_src = {
     },
     jsFiles: [
         "ambient/prepare",
-
+        "actions/collision",
         "constants/about", 
         "constants/generic",
 
-        "helpers/classAndId",
         "helpers/math",
         "helpers/movements",
         "helpers/window",
@@ -43,6 +42,9 @@ var _jActs_src = {
         "vars/commum/window",
         "vars/generic",
 
+        "objects/create",
+        "objects/info",
+
         "animate/event",
 
         "jActs",
@@ -51,6 +53,9 @@ var _jActs_src = {
     ],
     cssFiles: [
         "beta/tests",
+        "gameobjects/asteroid/asteroid",
+        "gameobjects/space-backgrounds/space-background",
+        "gameobjects/spaceship/my-red-spaceship",
     ],
 };
 var _jActs_ErrorLoad = {
@@ -170,12 +175,37 @@ const _jaStartTime = new Date();
 /*True / False Verifications check*/
 /*+++++++++++++++++++++++++++++++++++++++*/
 var _jaIsNullEmptyOrUndefined = function (somethingToCheck) {
-    return (somethingToCheck == null || somethingToCheck == "" || somethingToCheck == "undefined");
-}
+    return (somethingToCheck == null || somethingToCheck === "" || typeof somethingToCheck === "undefined");
+};
 var _jaIsFunction = function (functionToCheck) {
     return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
-}
+};
 
+var _jaIsObject = function (objectToCheck) {
+    if (_jaIsNullEmptyOrUndefined(objectToCheck)) {
+        console.log('! _jaAlert: ' + objectToCheck + ' Not Found');
+        return false;
+    } else if (typeof objectToCheck === 'object') {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+var _jActs_GetElement = function (el) {
+    if (_jaIsObject(el)) {
+        return el;
+    } else {
+        obj = document.querySelectorAll(el);
+        switch (obj.length) {
+            case 0:
+                console.log('! _jaAlert: ' + el + ' Not Found');
+                return false;
+            case 1: return obj[0];
+            default: return obj;
+        }
+    }
+};
 /*+++++++++++++++++++++++++++++++++++++++*/
 /*Configure Events*/
 /*+++++++++++++++++++++++++++++++++++++++*/
@@ -301,13 +331,11 @@ var _jaFixedUpdate = function (func) {
     }
     //console.log("FixedUpdate"); //Debug FixedUpdate
 };
-
-
 /**
  * Description. 
    Send a function inside this, like that:
    
-   _jaAfterLoadFuncs( function(){
+   _jaAfterLoad( function(){
         //your code in here
    } );
   
@@ -315,13 +343,29 @@ var _jaFixedUpdate = function (func) {
  * @param {function} func
  * 
  */
-var _jaAfterLoadFuncs = function (func) {
+var _jaAfterLoad = function (func) {
     if (_jaIsNullEmptyOrUndefined(func) || !_jaIsFunction(func)) {
         throw "Start must have an function as parameter";
     } else {
         _jActs_Execution._AfterLoadFuncs.push(func);
     }
 };
+/**
+ * Description. 
+   Select Element(s) by tag, id, class:
+   
+   _ja('your element definition');
+   class ie: _ja('.myClass') _ja('.myParentClass .myClass') _('.myFirstClass.mySecondClass')
+   id ie: _ja('#myId')
+   tag ie: _ja('a') _ja('div') _ja('body')
+   You can also mix them all
+   mix ie: _ja('body a#myLinkParentId span.myClass')
+  
+ * 
+ * @param {function} func
+ * 
+ */
+var _ja = function (el) { return _jActs_GetElement(el); };
 
 /*Add modules at runtime, but not load them*/
 _jActs_tryToStart();

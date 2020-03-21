@@ -7,13 +7,13 @@
    (1) any css position explicity applyed on it
    (2) top based position
    
-   elCode recives id, class or set of classes 
+   el recives Element or Its tag, class, id reference
    factor is the speed in pixels, default 1px.
 
     exeples of elCode:
     (ie.1)'#elementID' <- id based string
     (ie.2)'.elementClass' <- class based string
-    (ie.3)'.elementClass1 Class2 Class3' <- if does not work properly try next
+    (ie.3)'.elementClass1 .Class2 .Class3' <- if does not work properly try next
     (ie.4)'.elementClass1 .Class2 .Class3' <- if does not work properly try previus
 
     Exemple of call based on id
@@ -35,13 +35,13 @@ var _jaMoveTopUpward = function (elCode, factor = 1) {
    (1) any css position explicity applyed on it
    (2) top based position
    
-   elCode recives id, class or set of classes 
+   el recives Element or Its tag, class, id reference
    factor is the speed in pixels, default 1px.
 
     exeples of elCode:
     (ie.1)'#elementID' <- id based string
     (ie.2)'.elementClass' <- class based string
-    (ie.3)'.elementClass1 Class2 Class3' <- if does not work properly try next
+    (ie.3)'.elementClass1 .Class2 .Class3' <- if does not work properly try next
     (ie.4)'.elementClass1 .Class2 .Class3' <- if does not work properly try previus
 
     Exemple of call based on id
