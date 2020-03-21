@@ -11,6 +11,111 @@
     -o-animation: rotating 20s linear infinite;
     animation: rotating 20s linear infinite;
 }
+.my-simple-asteroid-1 {
+    background: url(texture/asteroid_texture_1.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-2 {
+    background: url(texture/asteroid_texture_2.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-3 {
+    background: url(texture/asteroid_texture_3.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-4 {
+    background: url(texture/asteroid_texture_4.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-5 {
+    background: url(texture/asteroid_texture_5.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-6 {
+    background: url(texture/asteroid_texture_6.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-7 {
+    background: url(texture/asteroid_texture_7.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+.my-simple-asteroid-8 {
+    background: url(texture/asteroid_texture_8.jpg);
+    width: 30px;
+    height: 30px;
+    border-radius: 46%;
+    background-size: cover;
+    background-repeat: repeat;
+    -webkit-animation: rotating 20s linear infinite;
+    -moz-animation: rotating 20s linear infinite;
+    -ms-animation: rotating 20s linear infinite;
+    -o-animation: rotating 20s linear infinite;
+    animation: rotating 20s linear infinite;
+}
+
 @-webkit-keyframes rotating /* Safari and Chrome */ {
     from {
         -webkit-transform: rotate(0deg);
