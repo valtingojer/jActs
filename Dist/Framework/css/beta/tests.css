@@ -1,4 +1,12 @@
-﻿.el_30x30 {
+﻿.roundEl {
+  background-color: red;
+  border: 3px solid yellowgreen;
+  width: 10px;
+  height: 10px;
+  border-radius: 30%;
+  position: absolute;
+}
+.el_30x30 {
   background-color: red;
   border: 3px solid yellowgreen;
   width: 30px;
