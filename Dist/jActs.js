@@ -243,66 +243,35 @@ var _jActs_Execution = {
 /*+++++++++++++++++++++++++++++++++++++++*/
 
 var _jaDoTheAction = function (action) {
+    this.execOne = function (func) {
+        try {
+            func();
+            return true;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    };
     switch (action) {
         case "Awake":
             //_jActs_Execution._AwakeFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._AwakeFuncs.forEach(function (chieldFunc) {
-                try {
-                    chieldFunc();
-                    return true;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            });
+            _jActs_Execution._AwakeFuncs.forEach(function (chieldFunc) { execOne(chieldFunc); });
             break;
         case "Start":
             //_jActs_Execution._StartFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._StartFuncs.forEach(function (chieldFunc) {
-                try {
-                    chieldFunc();
-                    return true;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            });
+            _jActs_Execution._StartFuncs.forEach(function (chieldFunc) { execOne(chieldFunc); });
             break;
         case "Update":
             //_jActs_Execution._UpdateFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._UpdateFuncs.forEach(function (chieldFunc) {
-                try {
-                    chieldFunc();
-                    return true;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            });
+            _jActs_Execution._UpdateFuncs.forEach(function (chieldFunc) { execOne(chieldFunc); });
             break;
         case "FixedUpdate":
             //_jActs_Execution._FixedUpdateFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._FixedUpdateFuncs.forEach(function (chieldFunc) {
-                try {
-                    chieldFunc();
-                    return true;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            });
+            _jActs_Execution._FixedUpdateFuncs.forEach(function (chieldFunc) { execOne(chieldFunc); });
             break;
         case "AfterLoad":
             //_jActs_Execution._AfterLoadFuncs.forEach(chieldFunc => chieldFunc());
-            _jActs_Execution._AfterLoadFuncs.forEach(function (chieldFunc) {
-                try {
-                    chieldFunc();
-                    return true;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            });
+            _jActs_Execution._AfterLoadFuncs.forEach(function (chieldFunc) { execOne(chieldFunc); });
             break;
         default:
             //default action
@@ -411,10 +380,13 @@ var _jaAfterLoad = function (func) {
 
 var _include = function (file) {
     file = file.toString();
-
-    if (!file.includes('.css') || !file.includes('.js')) {
-        throw "At this time, _include suport only javascript (.js) and Stylesheet (.css) files";
-        return false;
+    let isJs = file.includes('.js');
+    let isCss = file.includes('.css');
+    if (!isCss && !isJs) {
+        let error = "At this time, _include suport only javascript (.js, " + isJs + ") ";
+        error += "and Stylesheet (.css, " + isCss + ") files at \n"
+        error += file;
+        throw error;
     }
 
     if (file.includes('.css')) {
@@ -444,21 +416,8 @@ var _include = function (file) {
 var _ja = function (el) { return _jActs_GetElement(el); };
 
 //Add resource at awake
-_jaAfterLoad(function () {
-    console.log('try js');
-    _jActs_Execution._IncludeJs.forEach(function (file) {
-        _jActs_InitHelper.appendJs(file);
-    });
-    console.log('append js success');
-});
-
-_jaAfterLoad(function () {
-    console.log('try css');
-    _jActs_Execution._IncludeCss.forEach(function (file) {
-        _jActs_InitHelper.appendCss(file);
-        console.log('append css success');
-    });
-});
+_jaAfterLoad(function () { _jActs_Execution._IncludeJs.forEach(function (file)  { _jActs_InitHelper.appendJs(file); }); });
+_jaAfterLoad(function () { _jActs_Execution._IncludeCss.forEach(function (file) { _jActs_InitHelper.appendCss(file); }); });
 
 /*Add modules at runtime, but not load them*/
 _jActs_tryToStart();
