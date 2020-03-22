@@ -50,8 +50,7 @@ var _jActs_src = {
         "animate/event",
 
         "jActs",
-
-        "beta/tests",
+        
     ],
     cssFiles: [
         "beta/tests",
@@ -417,8 +416,8 @@ var _include = function (file) {
 var _ja = function (el) { return _jActs_GetElement(el); };
 
 //Add resource at awake
-_jaAfterLoad(function () { _jActs_Execution._IncludeJs.forEach(function (file)  { _jActs_InitHelper.appendJs(file); }); });
-_jaAfterLoad(function () { _jActs_Execution._IncludeCss.forEach(function (file) { _jActs_InitHelper.appendCss(file); }); });
+_jaStart(function () { _jActs_Execution._IncludeJs.forEach(function (file)  { _jActs_InitHelper.appendJs(file); }); });
+_jaStart(function () { _jActs_Execution._IncludeCss.forEach(function (file) { _jActs_InitHelper.appendCss(file); }); });
 
 /*Add modules at runtime, but not load them*/
 _jActs_tryToStart();
