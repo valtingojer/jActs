@@ -53,10 +53,10 @@
 </script>
 
 <script>
-
+    
     _jaAwake(function () {
-            _include('ttt.css');
-            _include('ttt.js');
+        //_include('ttt.css');
+        _include('../Dist/Framework/js/beta/tests.js');
     });
 
     _jaAfterLoad(
@@ -72,16 +72,16 @@
         let backgroundY = parseInt(_ja('#move-bg').getAttribute('data-py'));
         backgroundY = (isNaN(backgroundY)) ? 0 : backgroundY;
         backgroundY = backgroundY + (factor * speed);
-        _ja('#move-bg').style.backgroundPosition = "0px " + backgroundY +"px";
+        _ja('#move-bg').style.backgroundPosition = "0px " + backgroundY + "px";
         _ja('#move-bg').setAttribute('data-py', backgroundY);
     });
 
     var delay = 0;
     _jaUpdate(function () {
         _jaCollisionDetector('square', ['.death-zone'], ['.layer-bullet'], function (a, b) { b.remove(); });
-        
+
         _jaCollisionDetector('square', ['.layer-wall'], ['.layer-bullet'], function (a, b) { b.remove(); });
-        _jaCollisionDetector('square', ['.layer-wall'], ['#player'], function (a, b) { console.log('damage player') } );
+        _jaCollisionDetector('square', ['.layer-wall'], ['#player'], function (a, b) { console.log('damage player') });
 
         _jaCollisionDetector('square', ['.buff-layer'], ['#player'], function (a, b) { a.remove(); addFireSpot(3); });
         _jaCollisionDetector('square', ['.debuff-layer'], ['#player'], function (a, b) { a.remove(); subFireSpot(1); });

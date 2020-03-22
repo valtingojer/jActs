@@ -17,7 +17,9 @@ var _jaIni = function () {
 
     if (_jaShowAbout) { console.log(_jaAboutVersion); }
 
-    _jaDoTheAction('AfterLoad');
+    setTimeout(function () {
+        _jaDoTheAction('AfterLoad');
+    }, 2000);
     
 }
 var _jaDoTheAutoIni = function(){
