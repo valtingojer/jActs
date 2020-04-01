@@ -58,6 +58,7 @@ var _jActs_src = {
         "gameobjects/space-backgrounds/space-background",
         "gameobjects/spaceship/my-red-spaceship",
         "gameobjects/spaceship/my-shoots",
+        "gameobjects/hit/my-smoke-hit",
     ],
 };
 var _jActs_ErrorLoad = {
